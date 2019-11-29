@@ -1,0 +1,14 @@
+.topHeader {
+    
+    color:black;
+    padding: 18px 0;
+    margin-bottom: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .header_width_percent {
+    width: 91% !important;
+    
+    justify-content: center;
+    
+  }
