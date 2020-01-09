@@ -19,99 +19,83 @@ const styles = theme => ({
   rightPanelCard: {
     background: "#FFFFFF",
     borderRadius: "7px",
-    borderRadius: "7px"
-  },
-  rightPanelSuggestions: {
-    fontSize: "22px",
-    color: "#343434",
-    marginBottom: "20px",
-    textAlign: "start",
-    marginLeft: "1.4%",
-    marginTop: "0.7%",
-    marginBottom: "1.2%"
-  },
-  rightPanelSuggestionUser: {
-    fontSize: "14px",
-    color: "#343434",
-    marginLeft: "0.8%",
-    marginRight: "4.7%",
-    textAlign: "start",
-    marginTop: "3.1%",
-    marginBottom: "4.8%"
-  },
+    borderRadius: "7px",
+    marginTop: "0%",
+    paddingBottom: "7%",
+    boxShadow:'none',
 
-  rightPanelButton: {
-    border: "1px solid #E95A29",
-    borderRadius: "18px",
-    borderRadius: "18px",
-    marginRight: "1.7%",
-    fontSize: "14px",
-    color: "#E95A29",
-    textAlign: "center",
-    margin: "right"
-  },
-  rightPanelButtonText: {
-    fontSize: "14px",
-    color: "#E95A29",
-    textAlign: "center"
-  },
-  rightPanelSearchField: {
-    marginLeft:'1.4%',
-    marginRight:'1.4%',
-    marginTop:'0.9%',
-    marginBottom:'1.2%',
-    position: "relative",
-      top: "6px"
-    },
-  rightPanelSearchIcon: {
-    width: "17.5px",
-    height: "17.5px",
-    marginLeft: "1px"
   },
   rightPanelPaper: {
     background: "#FFFFFF",
     border: "1px solid #DADADA",
     borderRadius: "31px",
     borderRadius: "31px",
-    width: "310px",
-    marginLeft: "7.2%",
-    marginTop: "3.0%",
-    marginRight: "2.4%"
+    width: "88%",
+    marginLeft: "5.2%",
+    marginTop: "4%",
+    fontFamily:'Roboto'
+  },
+  rightPanelSearchField: {
+    paddingLeft: "6%",
+    paddingTop: "4%",
+    fontSize: "14px",
+    color: "#939393"
+  },
+  rightPanelSuggestions: {
+    fontSize: "22px",
+    color: "#343434",
+    marginLeft: "5.2%",
+    marginTop: "4%",
+    marginRight: "5.2%",
+    fontFamily:'Roboto Medium',
+    background:''
+  },
+  rightPanelSuggestionUser: {
+    fontSize: "14px",
+    fontFamily:'Roboto Medium',
+    color: "#343434",
+    paddingLeft: "4%",
+    marginTop: "5%"
+  },
+  rightPanelButton: {
+    border: "1px solid #E95A29",
+    borderRadius: "18px",
+    borderRadius: "18px"
+  },
+  rightPanelButtonText: {
+    fontSize: "14px",
+    color: "#E95A29",
+    textAlign: "center"
+  },
+  rightPanelSearchIcon: {
+    width: "17.5px",
+    height: "17.5px",
+    marginLeft: "1px"
   },
   rightPanelSuggestionAvatar: {
-    width: "45px",
-    height: "45px",
-
-    border: "3px solid #FFFFFF",
-    marginLeft: "1.4%",
-    marginRight: "0.8%",
-    marginBottom: "0.7%",
-    marginTop: "0.7%"
+    // width: "45px",
+    // height: "45px",
+    // border: "3px solid #FFFFFF",
+    // marginLeft: "5.2%",
+    marginTop: "4%"
   },
   eventTitle: {
-    fontSize: "14px",
+    fontSize: "15px",
+    fontFamily:'Roboto Medium',
     color: "#343434",
-    marginLeft: "1.4%",
-    marginRight: "0.9%",
-    marginBottom: "0.3%",
-    marginTop: "1%"
+    marginTop: "4%"
   },
   event: {
-    fontSize: "14px",
     color: "#4E4B4B",
-    marginLeft: "1.4%",
-    marginTop: "0.3%",
-    marginBottom: "0.5%",
-    marginRight: "0.9%"
+    marginTop: "0.9%",
+     fontFamily:'Roboto Regular',
+    fontSize: "14px"
   },
   divider: {
-    marginTop: "0.5%",
-    marginBottom: "0.5%",
-    marginRight: "1.4%",
-    marginLeft: "0.9%"
+    marginTop: "1%",
+    marginBottom: "1%"
   }
 });
-
 class RightPanel extends React.Component {
   state = {
     suguser: [
@@ -121,8 +105,8 @@ class RightPanel extends React.Component {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHTJnaQlcvwo4wx5mcR4_CaJCWhHA3uz9MSHw2IBvW_-0KGXFVrQ&s"
       },
       {
-        name: "Nishant Krishnan",
-    },
+        name: "Nishant Krishnan"
+      },
       {
         name: "Shalu Rani",
         pic:
@@ -133,7 +117,7 @@ class RightPanel extends React.Component {
       {
         etitle: "Independence Day",
         event:
-          " Independence Day Celebration at Goodwork Labs.Lets celebrate the day with peace and enthusiasm"
+          " Independence Day Celebration at Goodwork Labs.Lets celebrate the day with peace and enthusiasm Independence Day Celebration at Goodwork Labs."
       },
       {
         etitle: "Coworks Yoga Day",
@@ -145,72 +129,9 @@ class RightPanel extends React.Component {
   render() {
     const { classes } = this.props;
     const { suguser, events } = this.state;
-
     return (
-      <Card className={classes.rightPanelCard}>
-        <Grid container className={classes.rightPanelPaper}>
-          <Grid item xs={2}>
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
-          </Grid>
+      <Card className={classes.rightPanelCard} style={{height:"542px"}}>
 
-          <Grid item>
-            <InputBase
-              className={classes.rightPanelSearchField}
-              placeholder="Search"
-            />
-          </Grid>
-        </Grid>
-
-        <Typography className={classes.rightPanelSuggestions}>
-          Events
-          {events.map(eve => {
-            return (
-              <Grid>
-                <Typography className={classes.eventTitle}>
-                  {eve.etitle}
-                </Typography>
-                <Typography className={classes.event}>{eve.event}</Typography>
-                <Divider className={classes.divider} />
-              </Grid>
-            );
-          })}
-        </Typography>
-
-        <Typography className={classes.rightPanelSuggestions}>
-          Suggestions
-        </Typography>
-
-        {suguser.map(user => {
-          return (
-            <Grid container>
-              <Grid
-                item
-                md={2}
-                sm={1}
-                xs={2}
-                className={classes.rightPanelSuggestionAvatar}
-              >
-                <Avatar alt="suggest_user" src={user.pic} />
-              </Grid>
-
-              <Grid item xs={5} sm={6} sm={5}>
-                <Typography className={classes.rightPanelSuggestionUser}>
-                  {user.name}
-                </Typography>
-              </Grid>
-
-              <Grid item xs={4} sm={4} sm={4}>
-                <Button className={classes.rightPanelButton} variant="outlined">
-                  <Typography className={classes.rightPanelButtonText}>
-                    Follow
-                  </Typography>
-                </Button>
-              </Grid>
-            </Grid>
-          );
-        })}
       </Card>
     );
   }
@@ -218,5 +139,106 @@ class RightPanel extends React.Component {
 RightPanel.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 export default withStyles(styles)(RightPanel);
+
+
+
+//
+//
+//
+// <Grid container className={classes.rightPanelPaper} >
+//   <Grid item md={1} sm={1} xs={1}>
+//     <IconButton>
+//       <SearchIcon />
+//     </IconButton>
+//   </Grid>
+//   <Grid item md={10} sm={10} xs={10}>
+//     <InputBase
+//       className={classes.rightPanelSearchField}
+//       placeholder="Search"
+//     />
+//   </Grid>
+// </Grid>
+// <Typography
+//   className={classes.rightPanelSuggestions}
+//   style={{ fontSize: "22px" }}
+// >
+//   Events
+//   {events.map(eve => {
+//     return (
+//       <Grid>
+//         <Typography
+//           className={classes.eventTitle}
+//           style={{
+//             color: "#212121"
+//           }}
+//         >
+//           {eve.etitle}
+//         </Typography>
+//         <Typography
+//           className={classes.event}
+//           style={{ color: "#4E4B4B" }}
+//         >
+//           {eve.event}
+//         </Typography>
+//         <Divider className={classes.divider} />
+//       </Grid>
+//     );
+//   })}
+// </Typography>
+// <Typography
+//   className={classes.rightPanelSuggestions}
+//   style={{
+//     fontSize: "22px",
+//     color: "#343434",
+//     background:''
+//   }}
+// >
+//   Suggestions
+//
+// {suguser.map(user => {
+//   return (
+//     <Grid container className={classes.rightPanelSuggestionAvatar}>
+//       <Grid
+//         item
+//         md={2}
+//         sm={2}
+//         xs={2}
+//         style={{
+//           width: "45px",
+//           height: "45px",
+//           border: "3px solid #FFFFFF",
+//           background: ""
+//         }}
+//       >
+//         <Avatar alt="suggest_user" src={user.pic} />
+//       </Grid>
+//       <Grid item md={6} sm={7} xs={7}>
+//         <Typography
+//           className={classes.rightPanelSuggestionUser}
+//           style={{
+//             fontSize: "14px",
+//             color: "#343434"
+//           }}
+//         >
+//           {user.name}
+//         </Typography>
+//       </Grid>
+//       <Grid item md={3} sm={2} xs={2}>
+//         <Button
+//           className={classes.rightPanelButton}
+//           variant="outlined"
+//           onClick={this.handleSuggestFollow}
+//           style={{ backgroundColor: this.state.backgroundColor }}
+//         >
+//           <Typography className={classes.rightPanelButtonText}>
+//             Follow
+//           </Typography>
+//         </Button>
+//       </Grid>
+//     </Grid>
+//   );
+//
+//
+// })}
+// </Typography>

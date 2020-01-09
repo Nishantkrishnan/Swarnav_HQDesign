@@ -16,29 +16,18 @@ const styles = theme => ({
   InputBaseCommentForm: {
     border: "1px solid #DADADA",
     borderRadius: "31px",
-    width: "515px",
-    marginLeft: "10px",
-    marginTop: "1.8%",
-    ['@media (max-width:620px)']: {
-
-      width:'400px'
-    },
-    ['@media (max-width:360px)']: {
-
-      width:'230px'
-    },
-    ['@media (max-width:500px)']: {
-
-      width:'300px'
-    },
+    width: "100%",
+    paddingLeft:'2%',
+    // marginLeft: "10px",
+    marginTop: "1.8%"
   },
   dialogTitle: {
-
     fontSize: "18px",
+    fontFamily: "Roboto Medium",
     color: "#343434",
     marginTop: "2.6%",
     marginLeft: "1.4%",
-    marginBottom:'3%'
+    marginBottom: "3%"
   },
   closeIcon: {
     width: "18.7px",
@@ -54,15 +43,16 @@ const styles = theme => ({
     position: "center",
     marginBottom: "2%",
     width: "125px",
-    height: "30px",
+    height: "35px",
     textAlign: "center",
     alignItems: "center",
     display: "flex",
-    margin: "auto"
+    margin: "auto",
+    color:'white'
   },
   username: {
-
-    fontSize: "14px",
+    fontSize: "16px",
+    fontFamily: "Roboto Medium",
     color: "#343434",
     marginTop: "4.6%",
     marginLeft: "0.8%"
@@ -71,11 +61,10 @@ const styles = theme => ({
     width: "38.5%"
   },
   commentSub: {
-
     fontSize: "14px",
+    fontFamily: "Roboto",
     color: " #4E4B4B",
-    marginLeft: "1.4%",
-    marginRight: "2.2%",
+
     marginTop: "1.8%"
   }
 });

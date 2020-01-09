@@ -1,5 +1,5 @@
 .topHeader {
-    
+
     color:black;
     padding: 18px 0;
     margin-bottom: 10px;
@@ -8,7 +8,17 @@
   }
   .header_width_percent {
     width: 91% !important;
-    
+
     justify-content: center;
-    
+
   }
+.listColor{
+  color: 'red';
+}
+
+/* .link-visited{
+  color:black;
+}
+.link-visited:focus{
+  color:red;
+} */

@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Avatar } from "@material-ui/core";
+import { Card, Avatar, Paper } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -8,49 +8,55 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import Hidden from '@material-ui/core/Hidden';
+import Hidden from "@material-ui/core/Hidden";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import MyBookings from "../../Routes/MyBookings";
+import Services from "../../Routes/Services";
+import Facilities from "../../Routes/Facilities";
+import Dashboard from "../Dashboard";
 const styles = theme => ({
-  profileCard: {
-    background: "#FFFFFF",
-    borderRadius: "7px",
-    borderRadius: "7px"
+  innerCard: {
+    background: "#E74A3F",
+    borderRadius: "7px 7px 0 0",
+    borderRadius: "7px 7px 0px 0px",
+    height: "82px",
+    position: "relative",
+    boxShadow:'none',
+  },
+  username: {
+    fontFamily: "Roboto Medium",
+    fontSize: "18px",
+    color: "#FFFFFF",
+    textAlign: "center",
+    marginTop: "3%"
   },
 
-  profileAvatar: {
-    height: "102px",
-    width: "102px",
+  avatar: {
+    left: "0%",
+    right: "68%",
+    width: "70px",
+    height: "70px",
     margin: "auto",
-    marginTop: "1.5%",
-    marginBottom: "1.6%"
+    position: "absolute"
   },
-  profileName: {
-    fontSize: "22px",
-    color: "#343434",
-    textAlign: "center",
-    marginTop: "1.6%",
-    marginBottom: "0.5%"
-  },
-  profileDetails: {
-    fontSize: "14px",
-    color: "#939393",
-    textAlign: "center",
-    marginTop: "0.5%",
-    marginBottom: "0.5%",
+  listItem: {
+    marginTop: "2.4%",
+    marginLeft: "11.5%",
+    marginBottom: "4.9%",
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    color: "#A1A1A1"
   },
 
-  profileFollow: {
-    fontSize: "16px",
-    color: "#343434",
-    marginTop: "25px",
-    marginBottom: "0.7%",
-    textAlign:'center'
-  },
-
-  profileFollowersCount: {
-    fontSize: "20px",
-    color: "#E74A3F",
-    marginBottom: "1.6%",
-    textAlign:'center'
+  linkTitle: {
+    color: "#A1A1A1",
+    marginLeft: "7%",
+    position: "absolute",
+    left: "84px",
+    textDecoration: "none",
+    fontFamily: "Roboto Regular",
+    fontSize: "18px"
   }
 });
 
@@ -58,43 +64,139 @@ class Profile extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Card className={classes.profileCard}>
-        <CardActionArea style={{ postion: "center" }}>
-          <Avatar
-            className={classes.profileAvatar}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcJKVr--zyOdfnj0sg3c05TIUkbO-YGvljORzs4bpNfzJpOY0Y&s"
-          />
-        </CardActionArea>
+      <Card style={{boxShadow:'none'}}>
+        <Card className={classes.innerCard}>
+          <Typography className={classes.username}>Vishwas Mudagal</Typography>
+        </Card>
 
-        <Typography className={classes.profileName}>
-          Vishwas Mudugal{" "}
+        <Avatar
+          className={classes.avatar}
+          style={{ transform: "translate(4%, -50%)" }}
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcJKVr--zyOdfnj0sg3c05TIUkbO-YGvljORzs4bpNfzJpOY0Y&s"
+        />
+        <Typography className={classes.listItem} style={{ marginTop: "21.4%" }}>
+          <i class="material-icons" style={{ marginTop: "4px" }}>
+            home
+          </i>
+          <Link
+            className={classes.linkTitle}
+            to="/"
+            style={
+              window.location.pathname === "/"
+                ? {
+                    textTransform: "none",
+                    color: "red",
+                    fontSize: "18px",
+                    textDecoration: "none"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+          >
+            Home
+          </Link>
         </Typography>
-        <Typography className={classes.profileDetails}>CEO</Typography>
-        <Typography className={classes.profileDetails}>
-          GoodWorkLabs Pvt.Ltd
+
+        <Typography className={classes.listItem}>
+          <i class="material-icons">speaker_notes</i>
+          <Link
+            className={classes.linkTitle}
+            to="/mybookings"
+            style={
+              window.location.pathname === "/mybookings"
+                ? {
+                    textTransform: "none",
+
+                    color: "red",
+                    fontSize: "16px",
+                    textDecoration: "none"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+          >
+            MyBooking
+          </Link>
         </Typography>
 
+        <Typography className={classes.listItem}>
+          <i class="material-icons">brightness_5</i>
+          <Link
+            className={classes.linkTitle}
+            to="/services"
+            style={
+              window.location.pathname === "/services"
+                ? {
+                    textTransform: "none",
 
-        <Grid container>
-        <Hidden xsDown>
-          <Grid item xs={6}>
-            {" "}
-            <Typography className={classes.profileFollow}>Following</Typography>
-            <Typography className={classes.profileFollowersCount}>
-              250
-            </Typography>
-          </Grid>{" "}
-          <Grid item xs={6}>
-            {" "}
-            <Typography className={classes.profileFollow} x>
-              Followers
-            </Typography>
-            <Typography className={classes.profileFollowersCount}>
-              250
-            </Typography>
-          </Grid>
-          </Hidden>
-        </Grid>
+                    color: "red",
+                    fontSize: "16px",
+                    textDecoration: "none"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+          >
+            Services
+          </Link>
+        </Typography>
+
+        <Typography className={classes.listItem}>
+          <i class="material-icons">star_border</i>
+          <Link
+            className={classes.linkTitle}
+            to="/facilities"
+            style={
+              window.location.pathname === "/facilities"
+                ? {
+                    textTransform: "none",
+
+                    color: "red",
+                    fontSize: "16px",
+                    textDecoration: "none"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+          >
+            Facilities
+          </Link>
+        </Typography>
+
+        <Typography className={classes.listItem}>
+          <i class="material-icons">feedback</i>
+          <Link
+            className={classes.linkTitle}
+            style={
+              window.location.pathname === "/feedback"
+                ? {
+                    textTransform: "none",
+                    textDecoration: "none",
+                    color: "red",
+                    fontSize: "16px"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+          >
+            Feedback
+          </Link>
+        </Typography>
+
+        <Typography className={classes.listItem}>
+          <i class="material-icons">more_horiz</i>
+          <Link className={classes.linkTitle}>More </Link>
+        </Typography>
       </Card>
     );
   }
