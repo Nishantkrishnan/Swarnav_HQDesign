@@ -206,7 +206,7 @@ class Home extends React.Component {
     console.log(textColor, "hhhhh");
     return (
       <Grid >
-        <Grid className={classes.topHeader} style={{height:'10%',position:'fixed'}}>
+        <Grid className={classes.topHeader} style={{}}>
           <Grid
             container
             style={{
