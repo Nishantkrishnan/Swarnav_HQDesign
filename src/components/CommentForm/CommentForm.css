@@ -1,0 +1,17 @@
+.commentImg {
+  margin-top: 10px;
+  text-align: right;
+}
+.commentImg img{
+  max-width: 36px;
+  height: auto;
+}
+
+.commentBody {
+  margin: 14px 0;
+}
+.commentImgCont{
+  width: 7%; 
+  padding-left: 15px; 
+  float: left;
+}

@@ -1,0 +1,145 @@
+.selHeading {
+  padding: 10px 0;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.selectionPanel {
+  background-color: #fff;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  border-radius: 0;
+  color: #000;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 3px solid #fff;
+  border-radius: 5px;
+}
+
+.selectionPanel.active, .selectionPanel.active:hover {
+  background-color: #eee;
+  border-bottom: 3px solid rgba(6, 221, 92, 0.959);
+}
+
+.selectionPanel.booked, .selectionPanel.booked:hover {
+  background-color: rgba(248, 4, 4, 0.705);
+  border-bottom: 1px solid rgba(248, 4, 4, 0.705);
+  cursor: not-allowed;
+}
+
+.selectionPanel:hover {
+  color: #000;
+  background-color: #eee;
+  text-decoration: none;
+  border-bottom: 3px solid #eee;
+}
+
+.selectionPanel:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.daysPanel div span {
+  font-size: 10px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.slotsPanel div span {
+  font-size: 14px;
+  display: block;
+}
+
+.monthPanel, .daysPanel, .slotsPanel {
+  display: inline-block;
+  position: relative;
+  min-height: 1px;
+  margin-right: 2%;
+  margin-left: -6px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-transform: uppercase
+}
+
+.monthPanel:nth-last-child(1), .daysPanel:nth-child(7n), .slotsPanel:nth-child(7n) {
+  margin-right: 0;
+}
+
+.monthPanel:nth-child(1), .daysPanel:nth-child(7n+1), .slotsPanel:nth-child(7n+1) {
+  margin-left: 0;
+}
+
+.monthPanel {
+  width: 24%;
+}
+
+.daysPanel, .slotsPanel {
+  width: 13%;
+}
+
+.confBtn {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.selectionBtn {
+  background-color: #fff;
+  font-size: 18px;
+  display: inline-block;
+  width: 40%;
+  font-weight: 600;
+  border-radius: 0;
+  color: #000;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #00AD44;
+  border-radius: 5px;
+}
+
+.selectionBtn.active {
+  background-color: #00AD44;
+  color: #fff;
+}
+
+.serviceTitle {
+  padding: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.serviceInfo {
+  padding-bottom: 30px;
+  font-size: 16px;
+  display: block;
+}
+
+.errorDesc {
+  border-color: rgb(247, 6, 6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(247, 6, 6, 0.637);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(247, 6, 6, 0.637);
+}
+
+.backBtn {
+  top: 15px;
+  left: 15px;
+  background-color: #00AD44;
+  border: 1px solid #00AD44;
+  padding: 8px 15px;
+  border-radius: 0;
+  color: #fff;
+  -webkit-box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.absolutePos {
+  position: absolute;
+}

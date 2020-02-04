@@ -1,0 +1,332 @@
+.cmBodyWrapper {
+  width: 100%;
+  height: calc(100% - 110px);
+  margin-top: 50px;
+  overflow: auto;
+}
+
+.wrapper {
+  width: 100%;
+  background: #f6f6f8;
+}
+
+.padding_right_0 {
+  padding-right: 0;
+}
+
+.padding_left_0 {
+  padding-left: 0;
+}
+
+.mainSectionWrapper {
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 #efefef;
+  border-radius: 4px;
+  width: 93%;
+  height: auto;
+  margin: 40px auto;
+  padding-bottom: 10px;
+}
+
+.mainSectionHeader {
+  border-bottom: 1px solid #e6e6e6;
+  width: calc(100% - 80px);
+  margin: auto;
+}
+
+.dashboardIcon {
+  color: rgb(122, 133, 141);
+  font-size: 20px;
+  vertical-align: bottom;
+  margin: -3px 7px;
+}
+
+/* dashboard body section css starts here */
+
+.metricsSection {
+  background: #ffffff;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 500px;
+  width: 100%;
+  margin: 30px auto;
+  padding: 30px;
+}
+
+.metricsAgeWrapper {
+  width: 100%;
+  margin: auto;
+}
+
+.metricsAge {
+  background: #ffffff;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  height: 450px;
+  width: calc(50% - 8px);
+  margin-right: 5px;
+  padding: 30px;
+  overflow: auto;
+}
+
+.metricsAge:last-child {
+  margin-left: 5px;
+}
+
+.locationWrapper {
+  background: #ffffff;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  width: 100%;
+  margin: 30px auto;
+  height: 700px;
+  padding: 30px;
+}
+
+.infoFilterSectionTitle {
+  font-weight: 600;
+  font-size: 24px;
+  color: #50505a;
+  letter-spacing: 0;
+}
+
+.metricsTab button:before {
+  display: none !important;
+}
+
+.metricsTab button.active {
+  background: #efefef;
+  border-radius: 5px;
+  color: #005b80;
+}
+
+.metricsAgeInfo {
+  color: #485465;
+}
+
+.metricsInfoWomen {
+  background: #005b80;
+}
+
+.metricsAgeInfo li {
+  list-style-type: none;
+}
+
+.metricsAgeInfo span {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 100%;
+}
+
+.metricsInfoMen {
+  background: #abddf1;
+}
+
+.metricsAgeInfo li {
+  line-height: 25px;
+  font-size: 12px;
+}
+
+.dashboardBodySection {
+  width: calc(100% - 80px);
+  margin: auto;
+}
+
+.map {
+  height: 600px;
+  margin-top: 53px;
+  width: 93%;
+  margin-left: 39px;
+}
+
+.percent_tbl {
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.percent_tbl td {
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #485465;
+  letter-spacing: 0.14px;
+}
+
+.hourChartBar td {
+  text-align: right !important;
+}
+
+.hourChartBar td>div>div {
+  background-color: #ffffff !important;
+}
+
+/* dashboard body section css ends here */
+
+/* campaign list  body section css starts here */
+
+.campaignUnitSection {
+  margin: 25px 120px 25px 0;
+}
+
+.campaignUnit {
+  opacity: 0.6;
+  font-weight: 700;
+  font-size: 24px;
+  color: #50505a;
+  letter-spacing: 0;
+  line-height: 32px;
+  display: block;
+}
+
+.campaignUnitName {
+  opacity: 0.78;
+  color: #50505a;
+  letter-spacing: 0;
+}
+
+.campaignListTable {
+  border-collapse: collapse;
+  color: #ffffff;
+  font-weight: 100;
+  width: 100%;
+  table-layout: auto;
+}
+
+.campaignListTable thead {
+  background: #0097d6;
+  box-shadow: 0 2px 4px 0 rgba(192, 192, 192, 0.5);
+}
+
+.ageChartWrapper {
+  margin-top: 100px;
+}
+
+.hourChartWrapper {
+  margin-top: 60px;
+}
+
+/* campaign list body section css ends here */
+
+/* CSS added by Rajib, for dashboard page */
+
+.postUserBlock {
+  margin-left: 8px;
+  margin-bottom: 10px;
+  margin-top: 6px;
+}
+
+.postUserTextBlock {
+  margin-top: 3px;
+}
+
+.postUserName {
+  font-size: medium;
+  font-weight: 600;
+  color: #1d7ae1;
+}
+
+.postUserAddress {
+  font-size: small;
+  font-weight: 100;
+}
+
+.postUserTime {
+  font-size: x-small;
+  font-weight: 100;
+}
+
+.renderPostImage {
+  margin-bottom: 5px;
+  border: 1px solid #776f6f38;
+}
+
+.postUpdateFormBlock {
+  padding-bottom: 15px;
+}
+
+.commentLabel {
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #8080802b;
+  margin-bottom: 10px;
+}
+
+.commentBlock {
+  margin-left: 8px;
+  margin-bottom: 10px;
+  margin-top: 6px;
+}
+
+.commentName {
+  font-size: medium;
+  font-weight: 600;
+  color: #1d7ae1;
+}
+
+.commentTime {
+  font-size: x-small;
+  font-weight: 100;
+}
+
+.commentBody {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.infLoad {
+  text-align: center;
+}
+
+.infLoad img {
+  width: 40px;
+}
+
+.likeBtn {
+  display: inline-block;
+  /* border-right: 1px solid #ddd; */
+  padding: 5px 10px;
+  font-weight: 600;
+}
+
+.likeBtn span {
+  padding: 0 10px;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.likeBtn i {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.likeText {
+  padding: 5px 10px;
+  display: inline-block;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.postBody {
+  padding-bottom: 5px;
+  white-space: pre-wrap;
+}
+
+.lcBtnPanel {
+  margin-top: 5px;
+  padding-top: 3px;
+  border-top: 1px solid #ddd;
+}
+
+.likeBtn.active {
+  color: #f44336;
+}
+
+.loadMoreCommentLink {
+  margin-left: 20px;
+}
+
+.editPanel {
+  height: 300px !important;
+}

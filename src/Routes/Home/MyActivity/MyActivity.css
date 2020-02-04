@@ -1,0 +1,125 @@
+.reqNoCont {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 15px 0;
+}
+
+.reqNoCont p {
+  font-size: 11px;
+  margin: 0 0 9px;
+}
+
+.reqNo {
+  border: #ccc 1px solid;
+  border-radius: 5px;
+  color: #777;
+  font-weight: bold;
+}
+
+.reqNo p {
+  padding: 15px 0;
+  font-size: 16px;
+  margin: 0;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.reqNo span {
+  background: #bbb;
+  color: #fff;
+  padding: 5px 0;
+  padding: 5px 0;
+  display: block;
+  font-size: 10px;
+}
+
+.reqNo span.completed {
+  background: #5cb85c;
+}
+
+.reqNo span.canceled {
+  background: #cc1307ab;
+}
+
+.reqNoList {
+  list-style-type: none;
+}
+
+.reqNoList li {
+  border-bottom: 1px solid #bbb;
+  background: #fff;
+  padding: 18px 15px;
+}
+
+.detials {
+  padding: 15px 0;
+}
+
+.detials h2 {
+  color: #777;
+  padding: 0;
+  margin: 6px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.detials h3 {
+  color: #959595;
+  font-size: 11px;
+  padding: 0;
+  margin: 0 0 6px;
+}
+
+.detials h3 span {
+  color: #333;
+  margin-left: 6px;
+}
+
+.detials p {
+  color: #777;
+  font-size: 14px;
+  margin: 0 0 6px;
+}
+
+.detials p.urgent {
+  color: red;
+}
+
+.cntBookedSlots {
+  display: block;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.cntBookedSlots .bookedSlot {
+  border-bottom: 1px solid #ddd;
+  display: block;
+  padding-left: 4%;
+  background: #f7f7f7;
+  margin-bottom: 2px;
+}
+
+.cntBookedSlots .bookedSlot:nth-last-child(1) {
+  border-bottom: none;
+}
+
+.ticketBox {
+  border: #ccc 1px solid;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.ticket {
+  padding-bottom: 10px;
+}
+
+.ticketArrow {
+  position: absolute;
+  right: 15px;
+  top: 40%;
+  font-size: 22px;
+}
+
+.pRelative {
+  position: relative;
+}

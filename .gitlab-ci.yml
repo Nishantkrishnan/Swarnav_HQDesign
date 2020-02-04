@@ -1,0 +1,50 @@
+variables:
+  DOCKER_DRIVER: overlay
+  SPRING_PROFILES_ACTIVE: gitlab-ci
+
+stages:
+  - version
+  - package
+  - deploy
+
+version:
+  stage: version
+  script:
+    - TIMESTAMP=$(date +'%s')
+    - MAJOR_VERSION=$(date -d @$TIMESTAMP +'%Y%m%d')
+    - MINOR_VERSION=$(( $(date -d @$TIMESTAMP +'%H' | sed -e "s/^0//g") * 60 * 60 + $(date -d @$TIMESTAMP +'%M' | sed -e "s/^0//g") * 60 + $(date -d @$TIMESTAMP +'%S' | sed -e "s/^0//g") ))
+    - if [ "$CI_COMMIT_REF_NAME" != "release" ]; then QUALIFIER="-${CI_COMMIT_REF_NAME}"; else QUALIFIER="" ; fi
+    - VERSION="${MAJOR_VERSION}.${MINOR_VERSION}${QUALIFIER}"
+    - echo "The version for the artifacts in this pipeline is $VERSION"
+    - echo "$VERSION" > version
+  artifacts:
+    paths:
+    - version
+    expire_in: 1 week
+  tags:
+    - java
+
+docker-build-stage:
+  stage: package
+  when: manual
+  dependencies:
+    - version
+  script:
+    - DOCKER_TAG="us.gcr.io/infrastructure-174017/campaign-portal-frontend:$(cat version)"
+    - docker build -f Dockerfile -t $DOCKER_TAG .
+    - gcloud docker -- push $DOCKER_TAG
+  tags:
+    - docker
+
+docker-deploy-stage:
+  stage: deploy
+  when: manual
+  dependencies:
+    - version
+  script:
+    - DOCKER_TAG="us.gcr.io\/infrastructure-174017\/campaign-portal-frontend:$(cat version)"
+    - gcloud container clusters get-credentials razor-prod001 --zone us-west1-a --project infrastructure-174017
+    - cd kubernetes
+    - cat deployment.yml | sed -e "s/IMAGE_TAG/$DOCKER_TAG/g" | kubectl replace -f -
+  tags:
+    - kubernetes

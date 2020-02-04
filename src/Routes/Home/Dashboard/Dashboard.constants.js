@@ -1,0 +1,9 @@
+export const GET_POSTS = 'dashboard/getPosts';
+export const STORE_POSTS = 'dashboard/storePosts';
+export const CREATE_POSTS = 'dashboard/createPosts';
+export const TOGGLE_LIKE = 'dashboard/toggle_like';
+export const UPDATE_LIKE_COUNT = 'dashboard/update_like_count';
+export const LOAD_COMMENTS = 'dashboard/load_more_comments';
+export const UPDATE_COMMENTS_STORE = 'dashboard/update_comment_store';
+export const ACTION_UPDATE_POST = 'dashboard/action_update_post';
+export const STORE_UPDATED_POST = 'dashboard/store_updated_post';

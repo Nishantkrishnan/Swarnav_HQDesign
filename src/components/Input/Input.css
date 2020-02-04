@@ -1,0 +1,61 @@
+.inputWrapper {
+  position: relative;
+  color: #000000;
+}
+
+.inputError {
+  color: #de1c1c;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.error {
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: #de1c1c;
+  top: 0;
+  right: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.message {
+  display: block;
+  position: absolute;
+  left: 0;
+  color: #de1c1c !important;
+  top: 105%;
+  font-size: 12px;
+}
+
+.messageLink {
+  font-size: 14px;
+  float: right;
+  text-transform: capitalize;
+  color: #5f5d5d;
+}
+
+.messageLink:hover {
+  color: #000000;
+}
+
+.inputLabel {
+  font-weight: 400;
+  font-size: 12px;
+  color: #50505a;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+  display: block;
+  position: absolute;
+  top: -25px;
+}
+
+.textarea {
+  border: none;
+  resize: none;
+  outline: none;
+}

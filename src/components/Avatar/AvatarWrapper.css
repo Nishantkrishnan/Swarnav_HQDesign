@@ -1,0 +1,46 @@
+.avatarWrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 15px;
+}
+
+.profName {
+    display: inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: calc(100% - 98px);
+    margin-top: 8px;
+}
+
+.profPic {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    margin-right: 9px;
+    margin-top: 10px;
+}
+
+.profPic img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.dropdownIcon {
+    background: url('../../images/header/menu_dropdown.svg');
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+    background-size: contain;
+}
+
+.dropdownIcon.active {
+    transform: rotate(180deg);
+}

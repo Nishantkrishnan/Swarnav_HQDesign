@@ -1,0 +1,44 @@
+.pRelative {
+  position: relative;
+}
+
+.pRelative span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 15px 10px;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.pRelative span i {
+  margin-right: 10px;
+}
+
+.pRelative:hover span {
+  display: block;
+}
+
+.pRelative span:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.infLoad {
+  text-align: center;
+}
+
+.infLoad img {
+  width: 40px;
+}
+
+.trancate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
