@@ -150,31 +150,50 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import {
-  Form,
-  FormGroup,
-  ControlLabel,
-  FormControl,
-  Col,
-} from 'react-bootstrap';
 import Avatar from "@material-ui/core/Avatar";
 import { doComment } from './CommentForm.actions';
 import styles from './CommentForm.css';
 import { Grid, InputBase, Button, withStyles, Typography } from '@material-ui/core';
 const design = theme => ({
   avatarComment: {
-    marginTop: "3%",
+    // marginTop: "3%",
     marginLeft: "1.4%",
-    marginRight: "0.8%"
+    ["@media (max-width:360px)"]: {
+      width:'30px',
+      height:'30px',
+      position:'relative',
+      right:'10px',
+    },
+    ["@media (max-width:414px)"]: {
+      marginRight:'1%',
+      width:"25px",
+      height:'25px',
+      marginTop:'9%',
+      marginRight:'1%',
+    },
   },
-  InputBaseCommentForm: {
+  inputBaseGrid: {
     border: "1px solid #DADADA",
     borderRadius: "31px",
     width: "auto",
-    height:'4.5vh',
+    height:'5vh',
     paddingLeft: '2%',
     // marginLeft: "10px",
-    marginTop: "1.8%"
+    // marginTop: "1.8%"
+    overflow:"hidden",
+    marginLeft:"0%"
+,
+["@media (max-width:360px)"]: {
+  marginLeft:'4%',
+  position:'relative',
+  right:'3px',
+},
+  },
+  inputBase:{
+    marginTop:"0.8%",
+    fontSize:"16px",
+    width:"97%",
+    background:"",
   },
   dialogTitle: {
     fontSize: "18px",
@@ -191,7 +210,7 @@ const design = theme => ({
     marginRight: "2.3%"
   },
   buttonCommontForm: {
-    background: "linear-gradient(90deg, #E74A3F 0%, #E95B27 100%)",
+    background: "#E74A3F",
     textTransform: "none",
     borderRadius: "18px",
     // marginTop: "20%",
@@ -203,11 +222,14 @@ const design = theme => ({
     // textAlign: "center",
     // alignItems: "center",
     // display: "flex",
-    // margin: "auto",
+    margin: "auto",
+  },
+  buttonTypography:{
+    fontSize:'14px',
     color: 'white',
-    fontSize:'12px',
+    margin: "auto",
     ["@media (max-width:48em)"]: {
-      width:'84px'
+      fontSize:'12px'
     },
   },
   username: {
@@ -246,39 +268,36 @@ class CommentForm extends Component {
   }
   render() {
     const { classes } = this.props
+    console.log("comment:",this.props);
     return (
-      <Grid container  style={{display:"inline-flex"}}>
-        <Grid item lg={1} md={1} sm={1} xs={2} >
+      <Grid container  style={{display:"inline-flex"}} >
+        <Grid item lg={1} md={1} sm={1} xs={1} >
           <Avatar
             aria-label="Recipe"
             className={classes.avatarComment}
             src={this.props.profile.profile_image.thumb}
           ></Avatar>
         </Grid>
-        <Grid item lg={8} md={8} sm={8} xs={7}>
-<Typography  className={classes.InputBaseCommentForm}>
-          <InputBase
+        <Grid item lg={9} md={9} sm={9} xs={8} className={classes.inputBaseGrid}>
+          <InputBase className={classes.inputBase}
             multiline
-            rowsMax="1"
-            style={{fontSize:"14px"}}
-
+            rowsMax="4"
+            style={{}}
             type="text"
             placeholder='Write a comment...'
             inputRef={(ref) => { this.comment_body = ref; }}
-            required="true"
-          >
+            required="true">
             </InputBase>
-            </Typography>
-        </Grid>
-        <Grid item lg={3} md={3} sm={3} xs={2} style={{paddingLeft:'3%',paddingTop:"1.5%"}}>
-          <Button variant="contained" type="submit" onClick={
+            </Grid>
+        <Grid item lg={2} md={2} sm={2} xs={2} style={{paddingLeft:'3%',paddingTop:"0.5%"}}>
+          <Button  onClick={
             (e) => {
               e.preventDefault();
               e.stopPropagation();
               this.createComment();
             }
           } className={classes.buttonCommontForm}>
-           <Typography style={{fontSize:'14px'}}> Comment </Typography>
+           <Typography className={classes.buttonTypography}> Comment </Typography>
                     </Button>
         </Grid>
       </Grid>

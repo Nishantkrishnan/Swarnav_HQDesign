@@ -1,3 +1,11 @@
+
+.postImage div img{
+
+  max-height: 500px;
+}
+.postImage {
+  color:red;
+}
 .fileUploader {
   width: 100%;
 }
@@ -11,8 +19,8 @@
 }
 
 .uploadPictureContainer {
-  width: 25%;
-  height: 5vh;
+  width: 15%;
+  height: 15%;
   margin-top: 9px;
   padding: 5px;
   display: inline-block;
@@ -105,4 +113,8 @@
   opacity: 0.6;
   font-size: 12px;
   display: block;
+}
+.postImage div img{
+
+  max-height: 500px;
 }

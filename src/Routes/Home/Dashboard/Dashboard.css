@@ -330,3 +330,23 @@
 .editPanel {
   height: 300px !important;
 }
+.postImage div img{
+  max-height: 400px;
+  max-width: 100%;
+  object-fit: contain;
+  /* width: 400px;
+  height: 300px;
+    overflow: hidden; */
+}
+
+
+
+
+
+
+.postImage div{
+color:red;
+}
+.postImage {
+color:blue;
+}

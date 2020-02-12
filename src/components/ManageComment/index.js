@@ -10,6 +10,22 @@ import Dialog from 'react-bootstrap-dialog';
 import { deleteComment } from './ManageComment.actions';
 import Wrapper from '../../Routes/hoc/Wrapper';
 import styles from './ManageComment.css';
+import { withStyles } from "@material-ui/core/styles";
+
+const design = theme => ({
+  cmntDropBtn: {
+       border:'transparent' ,
+        outline: "none" ,
+    ['@media (min-width:300px) and (max-width:375px)']: {
+      marginRight: "22px",
+
+
+  },
+  ["@media (min-width:376px) and (max-width:450px)"]: {
+    marginRight:"17px",
+  },
+  },
+})
 
 class ManageComment extends Component {
   static propTypes = {
@@ -44,6 +60,7 @@ class ManageComment extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const deleteCommentPopOver = () => {
       return (
         <Popover id={'delete'}>
@@ -74,7 +91,7 @@ class ManageComment extends Component {
               placement="bottom"
               overlay={deleteCommentPopOver()}
             >
-              <Button  style={{border:'transparent' , outline: "none" }}>
+              <Button  className={classes.cmntDropBtn}>
                 <i class="material-icons"  aria-hidden="true" style={{ top: '3px' }}>
   keyboard_arrow_down
   </i>
@@ -89,4 +106,4 @@ class ManageComment extends Component {
   }
 }
 
-export default connect()(ManageComment);
+export default connect()(withStyles(design)(ManageComment));

@@ -12,6 +12,9 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import DrawerProfile from "./DrawerProfile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { logOut } from '../../Landing/Login/Login.actions';
+import profileSelector from '../Profile/Profile.selectors';
+import { connect } from 'react-redux';
 const styles = {
   list: {
       width: 250,
@@ -48,12 +51,38 @@ class SwipeableTemporaryDrawer extends React.Component {
     bottom: false,
     right: false
   };
+  static propTypes = {
+    dispatch: PropTypes.func,
+  };
+  static defaultProps = {
+    dispatch: f => f,
+  };
+  constructor(props, context) {
+    super(props, context);
+    this.destroySession = this.destroySession.bind(this);
+  }
 
   toggleDrawer = (side, open) => () => {
     this.setState({
       [side]: open
     });
   };
+
+
+
+
+
+
+
+
+
+
+
+  destroySession = () => {
+    console.log("logout calling");
+    this.props.dispatch(logOut({ userToken: null }));
+  console.log("logout called");
+  }
 
   render() {
     const { classes } = this.props;
@@ -206,6 +235,22 @@ onClick={()=>window.location.href='/my_bookings/services'}
           </Typography>
 
 
+          <Typography className={classes.listItems}>
+            <i class="material-icons">power_settings_new</i>
+            <Link  to="/logout"
+              className={classes.linkTitle}
+              onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.destroySession();
+          }}
+
+            >
+            Logout
+            </Link>
+          </Typography>
+
+
 
           </Grid>
           </Grid>
@@ -221,4 +266,5 @@ SwipeableTemporaryDrawer.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SwipeableTemporaryDrawer);
+export const mapStateToProps = state => profileSelector(state);
+export default connect(mapStateToProps,null) (withStyles(styles)(SwipeableTemporaryDrawer));

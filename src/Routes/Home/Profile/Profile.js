@@ -24,6 +24,10 @@ import { Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { logOut } from '../../Landing/Login/Login.actions';
+import LogoutDialog from "../../../components/LogoutDialog"
+
+
 const design = theme => ({
   username:{
     fontSize:"28px !important",
@@ -88,13 +92,17 @@ class Profile extends Component {
       profile: props.profile,
       showModal: false,
       formPosted: false,
+      open: false,
     };
     this.props.dispatch(fetchProfile());
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.updateProfilePic = this.updateProfilePic.bind(this);
+    this.destroySession = this.destroySession.bind(this);
   }
+
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       profile: nextProps.profile,
@@ -121,6 +129,27 @@ class Profile extends Component {
     });
     this.props.dispatch(updateProfileImg(reqBody));
   }
+
+  destroySession = () => {
+    this.props.dispatch(logOut({ userToken: null }));
+
+  }
+
+  toggleCreatePostDialog = () => {
+    const { open } = this.state;
+    this.setState({
+      ...this.state,
+      open: true
+    });
+  };
+
+  toggleCreatePostDialogClose = () => {
+    const { open } = this.state;
+    this.setState({
+      ...this.state,
+      open: false
+    });
+  };
   render() {
     const { classes } = this.props;
     if (this.state.profile === null) {
@@ -237,6 +266,7 @@ class Profile extends Component {
             Facilities
           </Link>
         </Typography>
+
         <Typography className={classes.listItem}>
           <i class="material-icons">feedback</i>
           <Link
@@ -261,6 +291,31 @@ class Profile extends Component {
         </Typography>
 
 
+        <Typography className={classes.listItem}>
+          <i class="material-icons">power_settings_new</i>
+          <Link
+            className={classes.linkTitle} to="/logout"
+            onClick={() => {
+              this.toggleCreatePostDialog();
+            }}
+            // onClick={
+            //   (e) => {
+            //   e.preventDefault();
+            //   e.stopPropagation();
+            //   this.destroySession();
+            //   this.toggleCreatePostDialog();
+            // }}
+            
+            >
+
+
+            Logout
+          </Link>
+          <LogoutDialog
+            open={this.state.open}
+            toggleCreatePostDialogClose={this.toggleCreatePostDialogClose}
+          />
+        </Typography>
 
         </Card>
       </div>

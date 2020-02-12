@@ -15,9 +15,17 @@ import { withStyles } from "@material-ui/core/styles";
 const design = theme => ({
   dropBtn: {
     borderColor:'transparent',
-    ['@media (max-width:80em)']: {
 
-  }
+    ['@media (min-width:300px) and (max-width:375px)']: {
+        marginRight:"10px",
+        position: "relative",
+        bottom: "4px",
+
+  },
+  ["@media (min-width:376px) and (max-width:450px)"]: {
+    marginRight:"17px",
+
+  },
   },
 })
 class ManagePost extends Component {
@@ -64,7 +72,9 @@ class ManagePost extends Component {
         <Popover id={'edit-delete-post'}>
           <div className={styles.cntManagePost}>
             <div role="button" tabIndex="0" onClick={this.deletePost} className={styles.mcItem}>
-              <i className="glyphicon glyphicon-trash" />
+            <i class="material-icons">
+        delete_outline
+        </i>
               <span>Delete</span>
             </div>
             <div role="button" tabIndex="0" onClick={this.showEditModal} className={styles.mcItem}>
@@ -89,11 +99,11 @@ class ManagePost extends Component {
               placement="bottom"
               overlay={managePostPopOver()}
             >
-              
+              <Button  className={classes.dropBtn}>
                 <i class="material-icons" style={{ top: '3px' }} >
 keyboard_arrow_down
 </i>
-
+              </Button>
             </OverlayTrigger>
         }
         <div>

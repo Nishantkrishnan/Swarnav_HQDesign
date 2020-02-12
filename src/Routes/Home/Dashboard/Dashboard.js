@@ -17,6 +17,7 @@ import {
 } from "./Dashboard.actions";
 import { dashboardSelector } from "./Dashboard.selectors";
 import styles from "./Dashboard.css";
+import  "./Dashboard.css";
 import CommentForm from "../../../components/CommentForm";
 import ManageComment from "../../../components/ManageComment";
 import PostForm from "../../../components/PostForm";
@@ -179,8 +180,9 @@ const design = theme => ({
 
   cardContent: {
     fontSize: "14px",
-    fontFamily: "Roboto ",
-    color: "#4E4B4B"
+    fontFamily: "Roboto Regular",
+    color: "#4E4B4B",
+    marginLeft:"%"
     // paddingRight:'40px'
   },
   // sharePaper: {
@@ -210,6 +212,18 @@ const design = theme => ({
   userfeedImage: {
     marginTop: "1.2%",
     marginBottom: "1.2%"
+  },
+  commentAvatar:{
+    width:'55%',
+     height:'70%',
+      marginLeft:'2%',
+      ["@media (max-width:414px)"]: {
+        height:'60%',
+      },
+      ["@media (max-width:375px)"]: {
+        height:'60%',
+        width:'60%',
+      }
   }
 });
 
@@ -218,6 +232,7 @@ class Dashboard extends Component {
     open: false,
     menuOpen: false,
     likes: 0,
+    id:0,
     color: ""
   };
   handleMenuToggle = () => {
@@ -229,8 +244,8 @@ class Dashboard extends Component {
     }
     this.setState({ menuOpen: false });
   };
-  toggleCommentDialogOpen = () => {
-    this.setState(state => ({ open: !state.open }));
+  toggleCommentDialogOpen = (id) => {
+    this.setState(state => ({ open: !state.open,id:id}));
   };
   handlePostLikes = () => {
     let { likes, color } = this.state;
@@ -459,17 +474,35 @@ class Dashboard extends Component {
                   />
                 </Grid>
 
-                {this.state.posts.map(post => {
-                  console.log(post, "===");
+                < InfiniteScroll
+         pageStart={this.state.pageCount}
+         loadMore={this.loadMore}
+         hasMore={this.state.hasMoreItems}
+         loader={
+           <div className={styles.infLoad}>
+             <img src={"/src/images/loader.gif"} alt="" />
+           </div>
+         }
+         threshold={1}
+       >
+
+
+
+                {this.state.posts.map((post) => {
+                  // console.log("post:",post,"key:",key);
                   const imagUrls = [];
                   post.media.map(media => imagUrls.push(media.url));
                   return (
+                    <div  key={`${post.post_id}-${post.created_at}`}>
                     <Card
                       style={{
+                        // paddingLeft:"2%",
+                        // paddingTop:'2%',
                         background: "",
                         boxShadow: "none",
                         marginBottom: "1%"
                       }}
+                     
                     >
                       <CardContent
                         style={{
@@ -530,22 +563,24 @@ class Dashboard extends Component {
                           >
                             {" "}
                             {post.posted_by.user_id ===
-                              this.props.profile.user.id && (
+                              this.props.profile.user.id && 
                               <ManagePost
                                 post={post}
                                 showEditModal={this.showEditModal}
                               />
-                            )}
+                            }
                           </Grid>
                         </Grid>
-                      </CardContent>
-                      <CardContent
+                      {/* </CardContent> */}
+                      {/* <CardContent
                         style={{
                           marginLeft: "1%",
                           marginRight: "1%",
                           background: ""
                         }}
-                      >
+                      > */}
+                      <Grid style={{paddingTop:"2%",
+                    paddingBottom:"2%"}}>
                         <Typography
                           component="p"
                           className={classes.cardContent}
@@ -553,42 +588,53 @@ class Dashboard extends Component {
                           {this.decodeHtml(post.post_body)}
                         </Typography>
 
+                        <div className={styles.postImage}>
                         <SmartGallery
                           rootStyle={{
                             boxShadow: "20%",
                             backgroundSize: "cover",
                             border: "2px solid #FFFFFF",
                             backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center center"
+                            backgroundPosition: "center center",
+
                           }}
                           width="800"
                           height={410}
+
                           images={imagUrls}
                           onImageSelect={(event, src) => {
                             this.handleLightBox(imagUrls, src);
                           }}
                         />
-
-                        {post.media.map(postss => {
-                          console.log(post, "===");
+                        <div className={styles.postImage}></div></div>
+                         {post.media.map((postss) => {
+                          console.log("posts:",postss);
                           return <CardMedia component="img" />;
-                        })}
-                      </CardContent>
+                        })} 
+                        </Grid>
+                       
+{/* 
+                        {post.media.map((postss,key1) => {
+                          console.log("posts:",postss);
+                          return <CardMedia component="img" />;
+                        })} */}
+                       {/* </CardContent> */}
                       <Divider
                         style={{
-                          marginLeft: "3%",
-                          marginRight: "3%",
-                          marginTop: "0.5%",
+                          marginLeft: "%",
+                          marginRight: "%",
+                          marginTop: "%",
+                          marginBottom:"1%",
                           background: ""
                         }}
                       />
 
-                      <CardActions
+                      {/* <CardActions
                         style={{
                           marginLeft: "1%",
                           marginRight: "1%"
                         }}
-                      >
+                      > */}
                         <Grid
                           container
                           style={{
@@ -644,11 +690,12 @@ class Dashboard extends Component {
                             xs={6}
                             style={{ background: "", textAlign: "center" }}
                           >
-                            <Typography className={classes.commentGrid}>
+                            <Typography className={classes.commentGrid} >
+
                               <Button
                                 className={classes.commentButton}
-                                onClick={() => {
-                                  toggleCommentDialogOpen();
+                                onClick={(id) => {
+                                  toggleCommentDialogOpen(post.post_id);
                                 }}
                                 // onClick={() => this.showModal()}
                               >
@@ -667,8 +714,9 @@ class Dashboard extends Component {
                 </Modal> */}
                           </Grid>
                         </Grid>
-                      </CardActions>
-                      {this.state.open ? (
+                      {/* </CardActions> */}
+                     
+                      {this.state.open&&this.state.id==post.post_id ? (
 
                         <Grid
                           style={{
@@ -680,15 +728,29 @@ class Dashboard extends Component {
                           }}
                         >
 
-                          {post.comments.data.map(comment => {
+{
+                                post.comments.load_more &&
+                                <Link
+                                  to="#"
+                                  // className={styles.loadMoreCommentLink}
+                                  onClick={() => { this.loadMoreComments(post.post_id); }}
+                                >
+      <Typography style={{marginTop:'2%',fontSize:'14px',fontFamily:'Roboto'}}> Load More comments </Typography>
+
+                                </Link>
+                              }
+                              
+                          {
+                          post.comments.data.map((comment) => {
+                            console.log("comments coming:",comment);
                             return (
-                              <Grid key={comment.comment_id} >
+                              <div key={comment.comment_id} >
                                 <Grid container style={{display:"inline-flex"}}>
                                   <Grid item lg={1} md={1} sm={1} xs={1}style={{marginTop:"3%"}}>
                                     <Link
                                       to={`/user_profile/${comment.profile_id}`}
                                     >
-                                      <Avatar  style={{width:'55%', height:'90%', marginLeft:'40%'}}
+                                      <Avatar className= {classes.commentAvatar}
                                         src={comment.profile_image}
 
                                       />
@@ -707,9 +769,9 @@ class Dashboard extends Component {
                                     >
                                       {comment.commented_by}
                                     </Link>
-                                    <div>
+                                    <Grid  style={{marginBottom:"2%"}}>
                                       {this.decodeHtml(comment.comment_body)}
-                                    </div>
+                                    </Grid>
                                   </Grid>
                                   <Grid item lg={1} md={1} sm={1} xs={1} >
                                     {(post.posted_by.user_id ===
@@ -723,37 +785,34 @@ class Dashboard extends Component {
                                     )}
                                   </Grid>
                                 </Grid>
-                              </Grid>
+                              </div>
                             );
                           })}
-                           {post.comments.load_more && (
-                            <Link
-                              to="#"
-                              // className={styles.loadMoreCommentLink}
-                              onClick={() => {
-                                this.loadMoreComments(post.post_id);
-                              }}
-                            >
-                             <Typography style={{marginTop:'2%',fontSize:'14px',fontFamily:'Roboto'}}> Load More comments </Typography>
-                            </Link>
-                          )}
+                          
 
                           {/* <Modal show={this.state.modalShowHide} onHide={this.closeModal}>
             <Card>hiii</Card>
           </Modal> */}
-                          {
-                            <CommentForm
-                              postId={post.post_id}
-                              profile={this.props.profile}
-                              // open={this.state.open}
-                              // toggleCommentDialogClose={this.toggleCommentDialogClose}
-                            />
-                          }
+        
+            <CommentForm
+              postId={this.state.id}
+              profile={this.props.profile}
+              open={this.state.open}
+              key={this.state.id}
+              // toggleCommentDialogClose={this.toggleCommentDialogClose}
+            />
+         
                         </Grid>
-                      ) : null}
+                       ) : null} 
+
+                      </CardContent>
                     </Card>
+                    </div>
                   );
                 })}
+
+
+                </InfiniteScroll>
               </Grid>
 
               <Hidden mdDown>

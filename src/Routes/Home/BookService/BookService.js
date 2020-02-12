@@ -36,9 +36,7 @@ export const customTheme = createMuiTheme({
     palette: {
         primary: {
             main: 'rgba(255,0,0,0.7)',
-
         },
-
     },
 })
 const AntSwitch = withStyles(theme => ({
@@ -91,9 +89,7 @@ class BookService extends Component {
     // date: new Date(),
     open: false,date: new Date(),
     activeDay:new Date().date,
-
     urgent:false
-
   };
   handleChangeTime = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -133,7 +129,6 @@ class BookService extends Component {
   static defaultProps = {
     dispatch: f => f,
   };
-
   componentDidMount() {
     debugger
     this.props.dispatch(serviceRequestPreferences(this.props.serviceId, this.props.currentLocation.toJS().id));
@@ -168,7 +163,6 @@ class BookService extends Component {
     });
   }
   handleSlotClick = (slot) => {
-
     this.setState({ activeSlot: slot });
   }
   handleContinueBtnClick = () => {
@@ -201,17 +195,17 @@ class BookService extends Component {
     }
     return (
       <Wrapper>
-        {/* <Card > */}
-        <Button   onClick={() => { this.props.handleBackBtnClick()}} >
+        <Card  style={{boxShadow: 'none' ,paddingBottom:'2%',background:'',marginLeft:'1%',marginRight:"1%",marginTop:'1%',marginBottom:"2%"}}>
+        <Button   style={{position: "relative",
+    right: "20px"}}  onClick={() => { this.props.handleBackBtnClick()}} >
               <i class="material-icons">keyboard_backspace</i>
               </Button>
-
-          <CardContent style={{ background: "" }}>
+          {/* <CardContent style={{ background:'blue'}}> */}
           <Typography
             style={{
               fontSize: "16px",
-              marginBottom: "3%",
-              fontFamily: "Roboto Medium"
+            marginTop:"1%"
+,              fontFamily: "Roboto Medium"
             }}
           >
             {this.props.serviceName}
@@ -220,7 +214,7 @@ class BookService extends Component {
             style={{
               fontSize: "14px",
               marginBottom: "1%",
-              marginTop: "5%",
+              marginTop: "4%",
               fontFamily: "Roboto "
             }}
           >
@@ -238,49 +232,38 @@ class BookService extends Component {
             >
               <Typography
                 style={{
-
                   border: "1px solid #DADADA",
                   borderRadius: "5px",
                   borderRadius: "5px",
                   // height:'120%',
-                  paddingLeft: "2%",
+                  paddingLeft: "3%",
                   width: "90%"
                 }}
               >
-
-
                  <MuiThemeProvider theme={customTheme}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}  style={{backgroundColor: "red",fontSize:"14px"}}>
-
-
-
-                        <KeyboardDatePicker style={{width:'98%',fontSize:'14px'}}
-
-
-InputProps={{
+                        <KeyboardDatePicker style={{width: '100%' ,marginBottom:"5%",fontFamily:'Roboto Regular'}}
+ InputProps={{
   disableUnderline: true,
- }}
+  style: {fontSize: 14},
+  fontFamily:'Roboto Regular'
+  // classes: {
+  //   input: classes.resize,
+  // },
+}}
                         variant="inline"
-
                           // value={this.state.date}
                            format="dd/MM/yyyy"
                           margin="normal"
                           id="date-picker-inline"
-
                           value={activeDay}
-
                           onChange={ this.handleDayClick }
                           KeyboardButtonProps={{
                             "aria-label": "change date"
                           }}
                         />
-
-
-
-
                 </MuiPickersUtilsProvider>
                 </MuiThemeProvider>
-
               </Typography>
             </Grid>
             { this.state.availableDays &&
@@ -303,29 +286,25 @@ InputProps={{
                   border: "1px solid #DADADA",
                   borderRadius: "5px",
                   borderRadius: "5px",
-                  height: "95%",
+                  height: "100%",
                   paddingLeft: "2%"
                 }}
                 value={this.props.someText}
                 onChange={this.handleChangeTime}
               >
-                <Grid container>
-                  <Grid item lg={11} md={11} sm={11} xs={11} style={{ background: "" }}>
-
+                <Grid container style={{display:"inline-flex",background:'',marginTop:"5%"}}>
+                  <Grid item lg={11} md={11} sm={11} xs={11} style={{ background: "",paddingLeft:"2%"  }}>
                   <Select
                       // multiple
                       disableUnderline
                       displayEmpty
                       value={this.state.activeSlot}
-
                       onChange={(e)=> this.handleSlotClick(e.target.value)}
-                      style={{ marginTop: "5%",fontSize:'14px' }}
+                      style={{ fontSize:'14px',fontFamily:'Roboto Regular'}}
                       // input={<Input id="select-multiple" />}
                     >
-
                      {this.state.availableSlots.map((item) =>  (
-                        <MenuItem   key={item} value={item} style={{fontSize:'14px'}}>
-
+                        <MenuItem   key={item} value={item} style={{fontSize:'14px',fontFamily:'Roboto Regular'}}>
                         <span>{moment.unix(item).format('LT')}</span>
                         </MenuItem>
                       ))}
@@ -336,11 +315,12 @@ InputProps={{
                     lg={1} md={1} sm={1} xs={1}
                     style={{
                       position: "relative",
-                      marginTop: "5%",
-                      right: "15px"
+                    marginTop: "2%",
+                      right: "1px",
+                      width:'10px'
                     }}
                   >
-                    <i class="material-icons" style={{}}>
+                    <i class="material-icons"  style={{fontSize:'14px'}}>
                       access_time
                     </i>
                   </Grid>
@@ -371,7 +351,6 @@ InputProps={{
               Urgent
             </Typography>
           </Grid>
-
 <Typography
             style={{
               fontSize: "14px",
@@ -383,21 +362,29 @@ InputProps={{
             Describe your request
           </Typography>
           {this.state.emptyDesc && <p style={{ color: 'red' }}>Please describe your request here.</p>}
-          <InputBase
-            multiline
-            rowsMax="2"
-            style={{
+          <Grid style={{
               background: "",
               border: "1px solid #DADADA",
               borderRadius: "5px",
               width: "100%",
-              height: "",
-
+              height: "70px",
+              paddingLeft:'2%',
+              paddingRight:'2%',
+              paddingTop:'0.5%',
+              cursor: 'pointer',
+              overflow:"hidden"
+            }}>
+          <InputBase
+            multiline
+            rowsMax="4"
+            style={{
+             width:"100%",
+             fontFamily:'Roboto Regular',
+             fontSize:'14px',
             }}
             onChange={e => this.setState({ description: e.target.value, emptyDesc: false })}
-         />
-
-
+         ></InputBase>
+</Grid>
            <Typography
             style={{
               marginTop: "3%",
@@ -426,19 +413,33 @@ InputProps={{
           multiple
           type="file"
         /> */}
+
+
         <label htmlFor="contained-button-file">
             <Button
               style={{
-
               }}
             >
+
               <i class="material-icons" style={{}}>
                 attach_file
               </i>
+
+
               <Typography style={{ fontFamily: "Roboto Regular",fontSize:'12px' }}>
                 Attach Picture (jpg, jpeg, png)
               </Typography>
+
+              <ImageUploader
+                onChange={this.onDrop}
+                maxFileSize={10485760}
+                maxFiles={5}
+                label="Max image size: 10MB, Max images: 5, file type: jpg | jpeg | gif | png"
+                withPreview
+              />
             </Button>
+
+
             </label>
           </Grid>
           <Button
@@ -455,15 +456,12 @@ InputProps={{
               fontSize: "14px",
               textTransform: "none"
             }}
-
             onClick={() => { this.handleContinueBtnClick(); }}
           >
             Confirm Booking
           </Button>
-
-
-          </CardContent>
-          {/* </Card> */}
+          {/* </CardContent> */}
+          </Card>
           {this.props.showLoader && <Loader />}
       </Wrapper>
     );

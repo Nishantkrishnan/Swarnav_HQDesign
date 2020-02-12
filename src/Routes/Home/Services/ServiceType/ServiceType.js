@@ -10,6 +10,7 @@ import { fetchServices } from '../Services.actions';
 import { fetchLocations } from '../../Locations/Locations.actions';
 import ServiceCategory from '../ServiceCategory/ServiceCategory';
 import styles from '../Services.css';
+import {Grid} from '@material-ui/core';
 class ServiceType extends Component {
   static propTypes = {
     dispatch: PropTypes.func,
@@ -70,7 +71,11 @@ class ServiceType extends Component {
   render() {
     if (!this.state.serviceTypes) {
       return (
-        <div>No service found for this location</div>
+        <Grid  style= {{marginTop: "3%",
+        marginLeft: "3%",
+        fontFamily:'Roboto Regular',
+        fontSize:'14px',
+}}>No service found for this location</Grid>
       );
     }
     const serviceTypes = this.state.serviceTypes ? this.state.serviceTypes.toJS() : [];

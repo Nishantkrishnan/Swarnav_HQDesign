@@ -7,6 +7,31 @@ import {
   Button,
   Grid,TextField,Paper
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+const design = theme => ({
+  imgBtn: {
+    backgroundColor:'transparent',  position:'relative', marginTop:"%",left:'495px',bottom:"65px",
+    ["@media (min-width:200px) and (max-width:1280px)"]: {
+      left:'260px'
+    },
+    ["@media (min-width:300px) and (max-width:360px)"]: {
+      left:'250px',
+      bottom:'64px'
+    },
+    ["@media (min-width:366px) and (max-width:375px)"]: {
+      left:'258px',
+      bottom:'64px'
+    },
+    ["@media (min-width:376px) and (max-width:450px)"]: {
+      left:'290px',
+      bottom:'64px'
+    },
+    ["@media (min-width:450px) and (max-width:1024px)"]: {
+      left:'490px',
+      bottom:'80px'
+    },
+  },
+})
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
@@ -107,8 +132,8 @@ class ImageUpload extends Component {
     if (this.state.notAcceptedFileType.length > 0) {
       notAccepted = this.state.notAcceptedFileType.map((error, index) => {
         return (
-          <FlipMove enterAnimation="none" leaveAnimation="fade" duration={750} style={{ display: 'inline' }} key={index}>
-            <div className={classNames(this.props.errorClass)} key={index} style={this.props.errorStyle}>
+          <FlipMove enterAnimation="none" leaveAnimation="fade" duration={750} style={{color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px'}} key={index}>
+            <div  key={index} >
               * {error} {this.props.fileTypeError}
             </div>
           </FlipMove>
@@ -118,7 +143,7 @@ class ImageUpload extends Component {
     if (this.state.notAcceptedFileSize.length > 0) {
       notAccepted = this.state.notAcceptedFileSize.map((error, index) => {
         return (
-          <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ display: 'inline' }} key={index}>
+          <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px' }} key={index}>
             <div className={classNames(this.props.errorClass)} key={index} style={this.props.errorStyle}>
               * {error} {this.props.fileSizeError}
             </div>
@@ -128,7 +153,7 @@ class ImageUpload extends Component {
     }
     if (this.state.maxFilesError) {
       notAccepted = (
-        <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ display: 'inline' }}>
+        <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px'}}>
           <div className={classNames(this.props.errorClass)} style={this.props.errorStyle}>
             * {this.state.maxFilesError}
           </div>
@@ -159,15 +184,15 @@ class ImageUpload extends Component {
     );
   }
   render() {
+    const { classes } = this.props;
     return (
       <div  >
-
         <div >
           {this.renderErrors()}
         </div>
         {<span>
           <input
-          style={{display:'none'}}
+          style={{display:'none',background:"red"}}
             type="file"
             ref={(input) => { this.inputElement = input; }}
             multiple={this.props.singleImage ? '' : 'multiple'}
@@ -177,9 +202,7 @@ class ImageUpload extends Component {
           />
           </span> }
 <label htmlFor="contained-button-file">
-          <Button  component="span" style={{backgroundColor:'transparent',  position:'relative', marginTop:"7%"
-
-    }} >
+          <Button  component="span" className= {classes.imgBtn} >
              <i class="material-icons">photo</i>
           </Button>
         </label>
@@ -242,4 +265,4 @@ ImageUpload.propTypes = {
   errorStyle: PropTypes.object,
   singleImage: PropTypes.bool,
 };
-export default ImageUpload;
+export default withStyles(design)(ImageUpload);

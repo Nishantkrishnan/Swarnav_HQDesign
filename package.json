@@ -1,5 +1,5 @@
 {
-  "name": "GoodWorksCowork-Booking",
+  "name": "goodworkscowork-booking",
   "version": "1.0.0",
   "description": "GoodWorksCowork Booking App",
   "main": "index.js",
@@ -163,7 +163,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.8",
     "react-scroll-up-button": "^1.5.11",
-    "react-select": "^1.2.1",
+    "react-select": "^3.0.4",
     "react-smart-gallery": "^0.2.0",
     "react-styled-select": "^2.2.3-beta",
     "react-table": "^6.7.4",
@@ -207,5 +207,7 @@
     "jsdom": "^11.3.0",
     "react-transform-catch-errors": "^1.0.2",
     "webpack-build-notifier": "^0.1.16"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }

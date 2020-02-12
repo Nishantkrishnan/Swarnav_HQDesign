@@ -22,16 +22,19 @@ import RightPanel from '../../components/RightPanel';
 import { fetchLocations, changeLocations } from '../Home/Locations/Locations.actions';
 import locationSelector from '../Home/Locations/Location.selectors';
 import $ from 'jquery';
-import{ Grid,Button, withStyles,Card,Typography,Hidden,MenuItem,Select} from "@material-ui/core";
+import{ Grid,Button, withStyles,Card,Typography,Hidden,MenuItem,FormControl} from "@material-ui/core";
+import Select from "react-select";
 // import PropTypes from "prop-types";
 import MenuDrawer from "./MenuDrawer"
 import history from "../../utils/history";
 
-
-
 var design = theme => ({
-
-
+  formControl: {
+    // width: "100%",
+    marginTop:'3%',
+    fontSize:'16px',
+    fontFamily:'Roboto'
+  },
   displayBlock: {
     display: "block",
     // fontSize:"16px ! important"
@@ -46,10 +49,8 @@ var design = theme => ({
   },
   headerLogo: {
     height: "41px",
-
     ["@media (max-width:360px)"]: {
       height: "35px"
-
     }
   },
   headerLocation: {
@@ -57,7 +58,6 @@ var design = theme => ({
     color: "#7C7C7C"
   },
   headerLocationMenu: {
-
   },
   iconRight: {
     width: "0.7%",
@@ -104,15 +104,12 @@ var design = theme => ({
     marginLeft: "6.9%",
     marginTop: "0.8%",
     width: "18.1%",
-
-
   },
   viewPostForm: {
     marginLeft: "%",
     marginTop: "0.8%",
     width: "66%",
-    height:'100vh',
-
+  //height:'100vh',
     ['@media (min-width:200px) and (max-width:1280px)']: {
       width: "100%",
       marginLeft: "1%",
@@ -137,7 +134,6 @@ var design = theme => ({
     marginLeft: "1%",
     width: "24.3%",
     marginRight: "6.9%",
-
   },
   highlightLink: {
     textTransform: "none",
@@ -157,16 +153,36 @@ var design = theme => ({
 }
 });
 
+const customStyles = {
+  container: (base, state) => {
+    return ({
+      ...base,
+      zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
+      position:"absolute",
+      width:"15%",
+    })
+},
+control: base => ({
+  ...base,
+  overflow:'hidden'
 
+}),
+valueContainer: base => ({
+  ...base,
+ // padding: 0,
+ // paddingLeft: 2,  
+  animationName: styles.text,
+  animationDuration: '5s',
+  animationIterationCount: 'infinite',
+ animationDirection: 'alternate',
 
-
+})
+};
 class Home extends Component {
-
   state = {
     textColor: "red",
     textDecoration: "none",
-
-
+    locationVal:""
   };
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -177,8 +193,6 @@ class Home extends Component {
       background: "blue"
     });
   };
-
-
   static propTypes = {
     dispatch: PropTypes.func,
     locations: PropTypes.array,
@@ -188,11 +202,9 @@ class Home extends Component {
     facilityTypes: null,
     locations: null,
   };
-
   // constructor(props, context) {
   //   super(props, context);
   //   document.body.style.backgroundColor = null;
-
   //   var $rightSideBar = $("#goodwork_cowork_12098");
   //   var $leftSideBar = $("#goodwork_cowork_12097");
   //   var $window = $(window);
@@ -216,26 +228,19 @@ class Home extends Component {
   //       $leftSideBar.addClass(styles.rightSideBarRelative);
   //     }
   //   });
-
-
-
   //   this.state = {
   //     locations: null,
   //     currentLocation: null,
   //   };
-
   // };
-
   componentWillMount(){
     this.props.dispatch(fetchLocations());
   }
-
   componentDidMount(){
     this.setState({
       currentLocation: this.props.currentLocation
     })
   }
-
   componentWillReceiveProps(nextProps){
     if(nextProps.currentLocation && this.props.currentLocation !== nextProps.currentLocation){
       this.setState({
@@ -252,27 +257,64 @@ class Home extends Component {
       )
     }
   }
-
   handleSelect = (event) => {
+    this.setState({locationVal:event})
     const changedLocation = this.state.locations.filter(loc => loc.id == event.target.value)
     this.props.dispatch(changeLocations(changedLocation[0]));
   }
 
+
+  // componentDidMount(){
+  //   const {move} = this;
+  //   move();
+  // }
+  
+  move=(elem)=> {
+console.log("fdf",elem);
+
+    var left = 0
+      var fwdMove=true;
+      
+    function frame() {
+      
+      if(left<0){
+      fwdMove=true;
+      }
+      else if(left>80)
+      {
+      fwdMove=false;
+      }
+      
+  if(fwdMove){
+      
+      left+=5  // update parameters 
+   
+      elem.style.left = left + 'px' // show frame 
+  }
+      else{
+      
+      left-=5  // update parameters 
+   
+      elem.style.left = left + 'mm' // show frame 
+      }
+       }
+      
+       var id = setInterval(frame, 500) // draw every 1ms
+  }
+
   render() {
     const {classes}= this.props
-    const { textColor, flagValue, flag } = this.state;
-    const { changeColor, underlineOnLink } = this;
+    const { textColor, flagValue, flag, locationVal } = this.state;
+    const { changeColor, underlineOnLink,move } = this;
     console.log("history:",history);
     return (
-
       <Grid className={classes.displayBlock} >
       <Grid className={classes.topHeader} >
         <Grid
           container
           style={{
             display: "inline-flex",
-
-
+            background:''
           }}
         >
 <Hidden lgUp>
@@ -280,28 +322,22 @@ class Home extends Component {
               <MenuDrawer />
             </Grid>
           </Hidden>
-
           <Hidden lgUp>
-            <Grid item lg={9} md={8} sm={7} xs={4} className={classes.gridmobileLogo}>
+            <Grid item lg={9} md={8} sm={7} xs={4} className={classes.gridmobileLogo} style={{}}>
               <Button  style={{marginLeft:'15%'}}>
                 <img src="../../src/images/hq_mobile.png" className={classes.headerLogo} />
               </Button>
             </Grid>
           </Hidden>
-
-
-
-
           <Hidden mdDown>
-            <Grid item lg={9} md={9} sm={9} xs={6} style={{}}>
+            <Grid item lg={10} md={9} sm={9} xs={6} style={{background:""}}>
               <Button>
                 <img src="../../src/images/hq_logo.png" className={classes.headerLogo} />
               </Button>
             </Grid>
           </Hidden>
-
-          <Grid
-          lg={3}
+          <Grid item
+          lg={2}
             md={4}
             sm={4}
             xs={7}
@@ -312,53 +348,106 @@ class Home extends Component {
             <Card
               style={{
                 width: "100%",
-                height: "75%",
+                // height: "75%",
                 textAlign: "start",
-                marginTop: "2%",
-                background: "#e0e0e0",
+                 marginTop: "2.5%",
+                 marginBottom:"2.5%",
+                // background: "#e0e0e0",
                 display: "inline-flex",
                   boxShadow:'none',
               }}
             >
-              <i
-                class="material-icons"
+                <div >
+                  <Select
+                    placeholder="Select location"
+                    value={locationVal}
+                    options={
+                      this.state.locations && this.state.locations.map(location =>{
+                        return ({
+                          value:location.address_line1, label:location.address_line1
+                        })
+                      })
+                    }
+                    onChange={this.handleSelect}
+                    styles={customStyles}
+                  />
+                </div>
+              <Grid container style={{display:'inline-flex', }}>
+              <Grid item lg={2} md={2} sm={2} xs={2} style={{background: "#e0e0e0"}}>
+                <i class="material-icons"
                 style={{
-                  marginLeft: "4%",
-                  marginTop: "2%",
-                  marginRight: "2%"
+                  paddingLeft: "18%",
+                  paddingTop: "25%",
+                  // paddingRight: "120px"
                 }}
               >
                 room
               </i>
-              <Select
+              </Grid>
+{/* <Grid item lg={10} md={10} sm={10} xs={10}style={{background: "#e0e0e0",overflow:'auto',paddingRight:"3%",paddingTop:"1%"}}> */}
+{/* <FormControl required className={classes.formControl}> */}
+{/* <marquee direction="left"> */}
+              {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
+          
+                onChange={this.handleSelect}
+                defaultValue={this.state.currentLocation}
+               value={ move(<span>{this.state.currentLocation&&this.state.currentLocation.id}</span>)}  disableUnderline    >
+
+                        {this.state.locations && this.state.locations.map(element => {
+                            if(element.id === this.state.currentLocation){
+                                return ( <MenuItem  style={{marginLeft:"2%",}} value={element.id} selected key={element.id} >
+                                    {element.address_line1}
+                                    </MenuItem>)
+                            }else {
+                           return(
+                                <MenuItem value={element.id}  key={element.id} >
+                           {element.address_line1}
+                           </MenuItem>)
+                            }
+                            })}
+
+                    </Select> */}
+                   
+                    {/* </marquee> */}
+                    {/* </FormControl> */}
+                   
+                    {/* </Grid> */}
+                  
+              {/* <Select
               disableUnderline
                       value={this.state.currentLocation&&this.state.currentLocation.id}
                       onChange={this.handleSelect}
-                      style={{ fontFamily: "Roboto Regular",fontSize:'16px' }}
+                      style={{ fontFamily: "Roboto Regular",fontSize:'16px' ,}}
                     >
-                      {
-                        this.state.locations && this.state.locations.map(location => {
-                          return(<option value={location.id}>{location.address_line1}</option>);
-                        })
-                      }
-                    </Select>
+
+                  {this.state.locations && this.state.locations.map(option => {
+
+                    return(
+
+                    <MenuItem
+                      key={option.id}
+                      value={option.id}
+                    >
+                      {" "}
+                      {option.address_line1}
+                    </MenuItem>
+                   ) })}
+                    </Select> */}
+                    </Grid>
             </Card>
   }
             <i
               class="material-icons"
-              style={{ marginLeft: "8%", marginTop: "5%" }}
+              style={{ marginLeft: "6%", marginTop: "6%" }}
             >
               notifications_none
             </i>
           </Grid>
         </Grid>
       </Grid>
-
-
       <Grid container className={classes.viewPage}>
       <Hidden mdDown>
             <Grid item className={classes.viewProfile}>
-
               <Profile className={classes.profileGrid}/>
             </Grid>
           </Hidden>
@@ -383,17 +472,13 @@ class Home extends Component {
             </Router>
             </Grid>
         {/* </Grid> */}
-
     </Grid>
  </Grid>
-
-    );
+);
   }
 }
-
 Home.propTypes = {
   classes: PropTypes.object.isRequired
 };
 export const mapStateToProps = state => locationSelector(state);
-
 export default connect(mapStateToProps)(withStyles(design)(withRouter(Home)));

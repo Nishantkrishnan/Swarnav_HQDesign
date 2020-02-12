@@ -20,6 +20,7 @@ export function storeUserProfileInfo(response) {
 }
 
 export function logOut({ userToken }) {
+  console.log("logout 1st step",userToken);
   return {
     type: ACTION_LOGOUT,
     payload: userToken,

@@ -70,6 +70,7 @@ const styles = theme => ({
     fontSize:"16px"
   },
   closeButton: {
+
     // width: "18.7px",
     //  height: "18.7px",
   },
@@ -86,12 +87,22 @@ const styles = theme => ({
     background: "#D8D8D8",
     border: "3px",
     color: "#FFFFFF",
-    margin: "left",
-    width: "45px",
-    height: "45px",
-    marginRight: "0.8%",
-    marginLeft: "1.4%",
-    paddingTop:'2%',
+    // margin: "left",
+    width: "50px",
+    height: "50px",
+    // marginRight: "0.8%",
+    // marginLeft: "1.4%",
+    marginTop:'10%',
+    ["@media (min-width:200px) and (max-width:375px)"]: {
+      marginTop:'5%'
+    },
+    ["@media (min-width:500px) and (max-width:800px)"]: {
+      marginTop:'30%'
+    },
+    ["@media (min-width:800px) and (max-width:1024px)"]: {
+      marginTop:'60%'
+    },
+    // marginTop:"35%"
   },
   textBaseCreatePost: {
     background: "#FFFFFF",
@@ -99,37 +110,68 @@ const styles = theme => ({
     borderRadius: "31px",
     borderRadius: "31px",
     // width: "450px",
-    height: "6vh",
-    marginLeft: "15px",
+     height: "8vh",
+    marginLeft: "20px",
+
     ['@media (max-width:500px)']: {
       marginLeft: '5px',
     },
   },
-  TextFieldCreatePost: {
-    width: "",
+  textFieldCreatePost: {
+    textAlign:'center',overflow:"hidden",background:'',
+    width:"400px",
+    ["@media (min-width:300px) and (max-width:380px)"]: {
+      width:'182px'
+    },
+    ["@media (min-width:380px) and (max-width:500px)"]: {
+      width:'220px'
+    },
+    marginTop:"2%",marginBottom:'2%',
     // height:'auto',
-    marginTop:'3%',
+    // marginTop:'50px',
+    // position:'relative',
     fontSize: "16px",
-    paddingLeft:'8%',
+    paddingLeft:'3%',
     ["@media (max-width:30em)"]: {
       fontSize: "11px"
     }
   },
   submitButton: {
-    background: "linear-gradient(90deg, #E74A3F 0%, #E95B27 100%)",
-    borderRadius: "18px",
-    borderRadius: "18px",
-    width: "125px",
-    height: "35px",
-    marginTop: "3%",
+    background: "#E74A3F",
+    border: "1px solid #DADADA",
+    borderRadius: "31px",
+    borderRadius: "31px",
     display: "flex",
+    marginTop: "2%",
+    paddingLeft: "6%",
+    paddingRight: "6%",
     color: "white",
+    fontSize: "16px",
     textTransform: "none",
-    margin: "auto",
-    fontSize:"16px",
+    margin:'auto',
+    marginBottom:"4%"
+    // background: "linear-gradient(90deg, #E74A3F 0%, #E95B27 100%)",
+    // borderRadius: "18px",
+    // borderRadius: "18px",
+    // width: "125px",
+    // height: "35px",
+    // marginTop: "3%",
+    // marginBottom:'2%',
+    // display: "flex",
+    // color: "white",
+    // textTransform: "none",
+    // margin: "auto",
+    // fontSize:"16px",
+    // ["@media (max-width:40em)"]: {
+    //   width: "80px"
+    // },
+  },
+  modalCard:{
+    height:"",
+    overflow:"hidden",
     ["@media (max-width:40em)"]: {
-      width: "80px"
-    }
+      width: "100%"
+    },
   }
 });
 class PostForm extends React.Component {
@@ -149,6 +191,9 @@ class PostForm extends React.Component {
       formPosted: false,
       show: false,
       pictures: [],
+      emptyPost:false,
+      post: '',
+      error:''
     };
     this.onDrop = this.onDrop.bind(this);
   }
@@ -157,16 +202,26 @@ class PostForm extends React.Component {
   }
   getValidationState = () => { }
   createPosts = () => {
+    if(this.state.post.length >= 1){
+      console.log("succes");
     this.props.handleCreatePosts();
     const reqBody = new FormData();
     this.state.pictures.forEach((picture) => {
       reqBody.append('media[]', picture, picture.name);
     });
-    reqBody.append('post_body', this.post_body.value);
+    reqBody.append('post_body', this.state.post);
     this.props.dispatch(doCreatePost(reqBody));
     this.setState({ pictures: [] });
     this.post_body.value = null;
   }
+
+  else {
+    console.log("error");
+    this.setState({error:'Please type something...'})
+  }
+  }
+
+
   state = {
     open: false
   };
@@ -185,7 +240,7 @@ class PostForm extends React.Component {
     });
   };
   render() {
-    console.log(this.props,"oooooooo")
+
     const { classes } = this.props;
     const { toggleCreatePostDialog, toggleCreatePostDialogClose } = this;
     return (
@@ -201,18 +256,18 @@ class PostForm extends React.Component {
           <Grid item lg={11} md={11} sm={11} xs={10} style={{background:''}}  className={classes.textTypography}>
             <Typography className={classes.textGrid} style={{}} >
             <InputBase
-              style={{ paddingLeft: "4%", marginTop:'1.3%'}}
+              style={{ paddingLeft: "3%", marginTop:'1%',width:''}}
               onClick={() => this.props.showModal()}
               className={classes.inputTextPostForm}
               placeholder= "Whats on your mind?"
             /></Typography>
           </Grid>
-          <Modal show={this.props.modalShowHide} onHide={this.props.closeModal}>
+          <Modal show={this.props.modalShowHide} onHide={this.props.closeModal} className={classes.modalCard}>
       <Card  style={{background:''}}
         >
-          <CardContent>
-            <Grid container style={{ fontSize: "16px", marginBottom: "2%" }}>
-              <Grid item md={10} sm={10} xs={9} style={{ marginLeft: "3%" }}>
+          <CardContent style={{marginLeft:'1%',background:''}} >
+            <Grid container style={{marginBottom:'2%'}}>
+              <Grid item md={11} sm={11} xs={10} style={{ marginLeft: "%" }}>
                 <Typography
                   style={{
                     marginTop: "1%",
@@ -228,7 +283,7 @@ class PostForm extends React.Component {
                 md={1}
                 sm={1}
                 xs={2}
-                style={{ textAlign: "end", marginLeft: "2%" }}
+                style={{ textAlign:'end', marginLeft: "%",background:'' }}
               >
                 <Button
                  onClick={this.props.closeModal}
@@ -238,8 +293,9 @@ class PostForm extends React.Component {
                 </Button>
               </Grid>
             </Grid>
+            <Typography style={{ color: 'red',marginLeft:'2%',fontFamily:'Roboto', fontSize:'14px',marginTop:'2%', marginBottom:'2%' }}>{this.state.error}</Typography>
             <Grid container style={{ display: "inline-flex",background:"" }}>
-              <Grid item md={1} sm={1} xs={2} style={{ paddingLeft: "%",background:'' }}>
+              <Grid item md={1} sm={1} xs={2} style={{ paddingLeft: "%",marginLeft:"%" ,background:''}}>
                 <Avatar
                   className={classes.avatarCreatePost}
                   alt="suggest_user"
@@ -247,37 +303,57 @@ class PostForm extends React.Component {
                 />
               </Grid>
               <Grid
-                item style={{background:'black'}}
+                item style={{}}
                 md={10}
                 sm={10}
                 xs={9}
-                style={{ display: "inline-flex" }}
+                style={{ display: "inline-flex",overflow:"hidden" }}
                 className={classes.textBaseCreatePost}
               >
-              <Grid container>
-              <Grid item lg={10} md={10} sm={10} xs={9} style={{background:""}}>
-                <InputBase  multiline  rowsMax="1"  style={{textAlign:'center',marginTop:''}}
+              {/* <Grid container>
+              <Grid item lg={10} md={10} sm={10} xs={9} style={{background:"",}}> */}
+
+                <InputBase  multiline  rowsMax="4"  style={{}}
                  validationState={this.getValidationState()}
-                inputRef={(ref) => { this.post_body = ref; }}
-                  className={classes.TextFieldCreatePost}
+                    required= "true"
+                // inputRef={(ref) => { this.post_body = ref; }}
+                  className={classes.textFieldCreatePost}
                   placeholder="Whats on your mind?"
+                    onChange={e => this.setState({ post: e.target.value, emptyPost: false })}
                 ></InputBase>
-              </Grid>
-               <Grid item  lg={2}md={2} sm={2} xs={2} style={{background:''}}>
-                <ImageUploader
-                onChange={this.onDrop}
-                // maxFileSize={10485760}
-                // maxFiles={5}
-                // label="Max image size: 10MB, Max images: 5, file type: jpg | jpeg | gif | png"
-                withPreview
-              />
+
+              {/* </Grid> */}
               </Grid>
               </Grid>
-              </Grid>
-            </Grid>
-            {
-                this.props.formPosted ?
-                <Button className={classes.submitButton}  onClick={
+            {/* </Grid> */}
+          </CardContent>
+          <Grid >
+           <ImageUploader
+           onChange={this.onDrop}
+           // maxFileSize={10485760}
+           // maxFiles={5}
+           // label="Max image size: 10MB, Max images: 5, file type: jpg | jpeg | gif | png"
+           withPreview
+         />
+         </Grid >
+
+         {this.state.emptyPost && <p style={{ color: 'red' }}>Please type something...</p>}
+          {
+              this.props.formPosted ?
+              <Button className={classes.submitButton}  onClick={
+                (e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.createPosts();
+                  this.setState({ formPosted: true });
+                }
+              }>
+                <img src={'/src/images/loader.gif'} alt="..." />
+                Post</Button>
+                :
+                <Button
+
+                 className={classes.submitButton}  onClick={
                   (e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -285,20 +361,9 @@ class PostForm extends React.Component {
                     this.setState({ formPosted: true });
                   }
                 }>
-                  <img src={'/src/images/loader.gif'} alt="..." />
                   Post</Button>
-                  :
-                  <Button className={classes.submitButton}  onClick={
-                    (e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.createPosts();
-                      this.setState({ formPosted: true });
-                    }
-                  }>
-                    Post</Button>
-              }
-          </CardContent>
+            }
+
         </Card>
       </Modal>
         </Grid>

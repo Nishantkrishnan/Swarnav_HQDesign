@@ -16,9 +16,9 @@ export const history = createBrowserHistory();
 const design = theme => ({
   displayMsg: {
     marginTop: "3%",
-    marginLeft: "3.4%",
-    fontFamily:'Roboto Medium',
-    fontSize:'20px',
+    marginLeft: "3%",
+    fontFamily:'Roboto Regular',
+    fontSize:'14px',
 
   },
 })

@@ -7,7 +7,18 @@
 .width_percent {
   width: 95% !important;
 }
-
+@keyframes text {  
+  
+  0% {
+   transform: translateX(0);
+  }
+  50% {
+   transform: translateX(-30%);
+  }
+  100% {
+   transform: translateX(0);
+  }
+} 
 .header_width_percent {
   width: 91% !important;
 }
@@ -172,6 +183,8 @@
   cursor: default;
   color: #22f1ea !important;
 }
+
+
 
 /* .sidebarNavAnchor {
   text-align: center;

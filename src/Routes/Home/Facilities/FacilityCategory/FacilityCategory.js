@@ -10,7 +10,6 @@ import styles from '../Facilities.css';
 import{ Grid,Button, withStyles,Card,Typography,Hidden,MenuItem,Select,CardContent, CardMedia,GridList,GridListTile,ListSubheader, CardActions} from "@material-ui/core";
 const design = theme => ({
   cardFacilities: {
-
     width: "66%",
     paddingLeft: "1%",
     paddingRight: "1%",
@@ -20,7 +19,6 @@ const design = theme => ({
     }
   },
   cubeCards: {
-
     width: '32% ! important',
     marginRight:'1%',
     marginBottom:'1%',
@@ -31,11 +29,9 @@ const design = theme => ({
     // height:' 700px',
     // overflow:' hidden',
     // marginBottom: '10px',
-
     background: "#EDEDED ! important",
     borderRadius: "7px",
     borderRadius: "7px",
-
     boxShadow: "none",
     height: "100%",
     ["@media (max-width:48em)"]: {
@@ -46,7 +42,6 @@ const design = theme => ({
     padding:'0 !  important',
   },
   innerCubeCards: {
-
     background: "#848484 ! important",
     margin:'0 !  important',
     borderRadius: "7px 7px 0 0",
@@ -55,16 +50,15 @@ const design = theme => ({
     ["@media (max-width:48em)"]: {
       height: "110px ! important"
     }
-
   },
   title: {
     fontFamily: "Roboto Medium",
     fontSize: "16px",
     color: "#030303",
     letterSpacing: "-0.15px",
-    paddingLeft: "1%",
+
     paddingTop: "2%",
-    paddingBottom: "2%"
+    // paddingBottom: "2%"
   },
   innerCardTitle: {
     fontFamily: "Roboto Regular",
@@ -78,7 +72,23 @@ const design = theme => ({
         ["@media (max-width:48em)"]: {
       fontSize: "16px"
     }
-  }
+  },
+
+  warning:{
+    
+    fontFamily:'Roboto Medium',
+    fontSize:'12px',
+
+  },
+
+  warningStar:{
+    marginTop:'2%',
+    fontSize:'12px',
+    color:'red',
+    display:"inline-flex",
+    marginBottom:"2%"
+   
+}
 });
 class FacilityCategory extends Component {
   constructor(props) {
@@ -104,12 +114,40 @@ class FacilityCategory extends Component {
     const { classes } = this.props;
     const { location } = this.state;
     return (
-      <Card style={{boxShadow:'none',marginLeft:'1%'}} className={classes.cardFacilities}>
-
+      <Card style={{boxShadow:'none',marginLeft:'1%',background:'',paddingLeft:"2%",paddingBottom:"1%"}} className={classes.cardFacilities}>
+    {!this.state.individualFacility &&
+      <Grid>
             <Typography className={classes.title}>Meeting Rooms</Typography>
-            <Typography style={{marginTop:'',marginBottom:'1%',color:'red',fontFamily:'Roboto Medium',fontSize:'12px',marginLeft:'1%'}}>Note: You can avail maximum of 4 facilities in a month  </Typography>
 
 
+
+            <Grid  className={classes.warningStar}>          
+            <Typography>* </Typography>
+            <span></span>
+           <Typography className={classes.warning}> Only 4 hours of complimentary facility booking is available per organisation each month.Any bookings beyond 4 hours will be chargeable on monthly basis.
+</Typography></Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </Grid>}
         {!this.state.individualFacility &&
           <GridList   style={{overflowX:'hidden'}}>
             <GridListTile key="Subheader" cols={3} style={{ height: 'auto' }}>
@@ -117,15 +155,12 @@ class FacilityCategory extends Component {
         </GridListTile>
             { facilityCategory.facilities.map(((facilityItem, index) => {
               return (
-
                 <Card className={classes.cubeCards} key={facilityItem.id + facilityItem.title}>
                   <CardContent className={classes.ff}
-
                     role="button"
                     tabIndex="0"
                     style={{ boxShadow: "none" ,margin:0}}
                     onClick={() => { this.handleFacilityClick(index); }}
-
                   >
                     <img  style={{ boxShadow: "none"}} width = "100%" src=  {facilityItem.images.length > 0 ? facilityItem.images[0].original : null} alt={facilityItem.title} className={classes.innerCubeCards} />
                     {/* <CardMedia
@@ -133,12 +168,9 @@ class FacilityCategory extends Component {
                       component="img"
                       image=  {facilityItem.images.length > 0 ? facilityItem.images[0].original : null} alt={facilityItem.title}
                       /> */}
-
-
                   </CardContent>
                   <CardActions className={classes.innerCardTitle}>{facilityItem.title}</CardActions>
                 </Card>
-
                 );
             }))}
           </GridList>

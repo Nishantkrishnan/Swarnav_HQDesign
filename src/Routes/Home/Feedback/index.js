@@ -19,7 +19,7 @@ import { withStyles } from "@material-ui/core/styles";
 const design = theme => ({
 FeedbackCard:{
   width:'66%',
-  marginLeft:'2%',background:'',
+  marginLeft:'1%',background:'',
   ["@media (max-width:48em)"]: {
     width:'95%'
   },
