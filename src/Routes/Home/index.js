@@ -169,15 +169,26 @@ control: base => ({
 
 }),
 valueContainer: base => ({
-  ...base,
- // padding: 0,
- // paddingLeft: 2,  
+ ...base,
+ overflow:"unset !important",
  whiteSpace: "normal",
-  animationName: styles.text,
-  animationDuration: '5s',
-  animationIterationCount: 'infinite',
+ animationName: styles.text,
+ animationDuration: '5s',
+ animationIterationCount: 'infinite',
  animationDirection: 'alternate',
 
+}),
+dropdownIndicator: provided => ({
+  ...provided,
+  display: "none"
+}),
+singleValue: (provided, state) => {
+  const overflow = "unset";
+  return { ...provided, overflow};
+},
+indicatorSeparator: base =>({
+  ...base,
+  display: "none"
 })
 };
 
