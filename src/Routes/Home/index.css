@@ -19,6 +19,7 @@
    transform: translateX(0);
   }
 } 
+
 .header_width_percent {
   width: 91% !important;
 }

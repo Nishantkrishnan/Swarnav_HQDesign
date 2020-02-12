@@ -155,11 +155,12 @@ var design = theme => ({
 
 const customStyles = {
   container: (base, state) => {
+    console.log('this is screen width', screen.width);
     return ({
       ...base,
       zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
       position:"absolute",
-      width:"15%",
+      width:screen.width>768?"10%":"38%",
     })
 },
 control: base => ({
@@ -171,6 +172,7 @@ valueContainer: base => ({
   ...base,
  // padding: 0,
  // paddingLeft: 2,  
+ whiteSpace: "normal",
   animationName: styles.text,
   animationDuration: '5s',
   animationIterationCount: 'infinite',
@@ -178,6 +180,8 @@ valueContainer: base => ({
 
 })
 };
+
+
 class Home extends Component {
   state = {
     textColor: "red",
@@ -202,37 +206,7 @@ class Home extends Component {
     facilityTypes: null,
     locations: null,
   };
-  // constructor(props, context) {
-  //   super(props, context);
-  //   document.body.style.backgroundColor = null;
-  //   var $rightSideBar = $("#goodwork_cowork_12098");
-  //   var $leftSideBar = $("#goodwork_cowork_12097");
-  //   var $window = $(window);
-  //   $rightSideBar.addClass(styles.sidebarWrapperRelative);
-  //   $leftSideBar.addClass(styles.rightSideBarRelative);
-  //   $window.scroll(function() {
-  //     if ($window.scrollTop() > 74) {
-  //       if($rightSideBar.hasClass(styles.sidebarWrapperRelative)) {
-  //         $rightSideBar.removeClass(styles.sidebarWrapperRelative);
-  //         $leftSideBar.removeClass(styles.rightSideBarRelative);
-  //       }
-  //       $rightSideBar.addClass(styles.sidebarWrapperFixed);
-  //       $leftSideBar.addClass(styles.rightSideBarFixed);
-  //     }
-  //     else {
-  //       if($rightSideBar.hasClass(styles.sidebarWrapperFixed)) {
-  //         $rightSideBar.removeClass(styles.sidebarWrapperFixed);
-  //         $leftSideBar.removeClass(styles.rightSideBarFixed);
-  //       }
-  //       $rightSideBar.addClass(styles.sidebarWrapperRelative);
-  //       $leftSideBar.addClass(styles.rightSideBarRelative);
-  //     }
-  //   });
-  //   this.state = {
-  //     locations: null,
-  //     currentLocation: null,
-  //   };
-  // };
+ 
   componentWillMount(){
     this.props.dispatch(fetchLocations());
   }
@@ -264,49 +238,48 @@ class Home extends Component {
   }
 
 
-  // componentDidMount(){
-  //   const {move} = this;
-  //   move();
-  // }
-  
-  move=(elem)=> {
-console.log("fdf",elem);
-
-    var left = 0
-      var fwdMove=true;
-      
-    function frame() {
-      
-      if(left<0){
-      fwdMove=true;
-      }
-      else if(left>80)
-      {
-      fwdMove=false;
-      }
-      
-  if(fwdMove){
-      
-      left+=5  // update parameters 
-   
-      elem.style.left = left + 'px' // show frame 
-  }
-      else{
-      
-      left-=5  // update parameters 
-   
-      elem.style.left = left + 'mm' // show frame 
-      }
-       }
-      
-       var id = setInterval(frame, 500) // draw every 1ms
-  }
-
   render() {
     const {classes}= this.props
     const { textColor, flagValue, flag, locationVal } = this.state;
-    const { changeColor, underlineOnLink,move } = this;
+    const { changeColor, underlineOnLink } = this;
     console.log("history:",history);
+    // const ValueContainer = ({ children, ...props }) => {
+    //   return (
+    //     components.ValueContainer && (
+    //       <components.ValueContainer {...props}>
+    //         {!!children && (
+    //          <i class="material-icons"
+    //          style={{
+    //            paddingRight: "120px"
+    //          }}
+    //        >
+    //          room
+    //        </i>
+    //         )}
+    //         {children}
+    //       </components.ValueContainer>
+    //     )
+    //   );
+    // };
+    
+    // const DropdownIndicator = props => {
+    //   return (
+    //     components.DropdownIndicator && (
+    //       <components.DropdownIndicator {...props}>
+    //          <i class="material-icons"
+    //             style={{
+    //               paddingLeft: "18%",
+    //               paddingTop: "25%",
+    //               // paddingRight: "120px"
+    //             }}
+    //           >
+    //             room
+    //           </i>
+    //       </components.DropdownIndicator>
+    //     )
+    //   );
+    // };
+    
     return (
       <Grid className={classes.displayBlock} >
       <Grid className={classes.topHeader} >
@@ -317,7 +290,7 @@ console.log("fdf",elem);
             background:''
           }}
         >
-<Hidden lgUp>
+          <Hidden lgUp>
             <Grid item  lg={1} md={1} sm={1} xs={1} style={{background:'',paddingRight:'1%',}}>
               <MenuDrawer />
             </Grid>
@@ -337,30 +310,31 @@ console.log("fdf",elem);
             </Grid>
           </Hidden>
           <Grid item
-          lg={2}
-            md={4}
-            sm={4}
-            xs={7}
-            style={{ textAlign: "end", display: "inline-flex" }}
+            lg={2}
+              md={4}
+              sm={4}
+              xs={7}
+              style={{ textAlign: "end", display: "inline-flex" }}
           >
             {
-                  this.props.displayLocation === true && this.props.currentLocation &&
-            <Card
-              style={{
-                width: "100%",
-                // height: "75%",
-                textAlign: "start",
-                 marginTop: "2.5%",
-                 marginBottom:"2.5%",
-                // background: "#e0e0e0",
-                display: "inline-flex",
-                  boxShadow:'none',
-              }}
-            >
-                <div >
+              this.props.displayLocation === true && this.props.currentLocation &&
+              <Card
+                style={{
+                  width: "100%",
+                  // height: "75%",
+                  textAlign: "start",
+                  marginTop: "2.5%",
+                  marginBottom:"2.5%",
+                  // background: "#e0e0e0",
+                  display: "inline-flex",
+                    boxShadow:'none',
+                }}
+              >
+                {/* <div >
                   <Select
                     placeholder="Select location"
                     value={locationVal}
+                    autosize={true}
                     options={
                       this.state.locations && this.state.locations.map(location =>{
                         return ({
@@ -371,9 +345,9 @@ console.log("fdf",elem);
                     onChange={this.handleSelect}
                     styles={customStyles}
                   />
-                </div>
+                </div> */}
               <Grid container style={{display:'inline-flex', }}>
-              <Grid item lg={2} md={2} sm={2} xs={2} style={{background: "#e0e0e0"}}>
+              <Grid item lg={2} md={2} sm={2} xs={2}>
                 <i class="material-icons"
                 style={{
                   paddingLeft: "18%",
@@ -384,15 +358,13 @@ console.log("fdf",elem);
                 room
               </i>
               </Grid>
-{/* <Grid item lg={10} md={10} sm={10} xs={10}style={{background: "#e0e0e0",overflow:'auto',paddingRight:"3%",paddingTop:"1%"}}> */}
-{/* <FormControl required className={classes.formControl}> */}
-{/* <marquee direction="left"> */}
-              {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
-          
-                onChange={this.handleSelect}
-                defaultValue={this.state.currentLocation}
-               value={ move(<span>{this.state.currentLocation&&this.state.currentLocation.id}</span>)}  disableUnderline    >
-
+              <Grid  style={{paddingRight:"3%",paddingTop:"1%"}}>
+                {/* <FormControl required className={classes.formControl}> */}
+                   {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
+                        onChange={this.handleSelect}
+                        defaultValue={this.state.currentLocation}
+                        value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline    
+                    >
                         {this.state.locations && this.state.locations.map(element => {
                             if(element.id === this.state.currentLocation){
                                 return ( <MenuItem  style={{marginLeft:"2%",}} value={element.id} selected key={element.id} >
@@ -405,13 +377,25 @@ console.log("fdf",elem);
                            </MenuItem>)
                             }
                             })}
-
-                    </Select> */}
-                   
-                    {/* </marquee> */}
+                      </Select> */}
+                      <div>
+                       <Select
+                          placeholder=""
+                          value={locationVal}
+                          options={
+                            this.state.locations && this.state.locations.map(location =>{
+                              return ({
+                                value:location.address_line1, label:location.address_line1
+                              })
+                            })
+                          }
+                          onChange={this.handleSelect}
+                          styles={customStyles}
+                        />
+                      </div>
                     {/* </FormControl> */}
                    
-                    {/* </Grid> */}
+                  </Grid>
                   
               {/* <Select
               disableUnderline
