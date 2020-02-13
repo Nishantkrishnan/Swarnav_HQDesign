@@ -95,6 +95,10 @@
     padding: 0 4px;
     font-size: 10px;
 }
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 5px #0098d6;
+    border: 1px solid #0098d6;
+  }
 @media screen and (min-width: 320px) and (max-width: 768px) {
     .footer{
         font-size: 10px;
