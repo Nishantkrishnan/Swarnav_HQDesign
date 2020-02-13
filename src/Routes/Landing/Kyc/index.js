@@ -63,10 +63,16 @@ class Kyc extends Component {
 
     reader.readAsDataURL(file)
   }
-
+  removeImg = (type) => {
+    if(type === 'address'){
+      this.setState({imagePreviewUrl1:"",file1:""})
+    }else{
+      this.setState({imagePreviewUrl:"",file:""})
+    }
+  }
   render() {
     const {classes}= this.props
-    const { handleSelect, handleOnChange } = this;
+    const { handleSelect, handleOnChange, removeImg } = this;
     const { addressProof,imagePreviewUrl, imagePreviewUrl1 } = this.state;
     let imagePreview = null;
     let imagePreview1 = null;
@@ -79,12 +85,12 @@ class Kyc extends Component {
     if (imagePreviewUrl) {
       imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      imagePreview = (<div className="previewText"></div>);
+      imagePreview = ("");
     }
     if (imagePreviewUrl1) {
       imagePreview1 = (<img src={imagePreviewUrl1} />);
     } else {
-      imagePreview1 = (<div className="previewText"></div>);
+      imagePreview1 = ("");
     }
     return (
       <div className={styles.root}>
@@ -182,6 +188,7 @@ class Kyc extends Component {
               </div>
               <div className={styles.imgPreview}>
                 {imagePreview}
+                {imagePreview && <span className={styles.removeImg} onClick={()=>removeImg('pan')}>X</span>}
               </div>
               <div className={styles.rowFlex1}>
                 <div className={styles.colFlex}>
@@ -209,6 +216,7 @@ class Kyc extends Component {
               </div>
               <div className={styles.imgPreview}>
                 {imagePreview1}
+                {imagePreview1 && <span className={styles.removeImg} onClick={()=>removeImg('address')}>X</span>}
               </div>
               <div className={styles.submitContainer}>
                 <Button variant="contained" size="large" style={{color:"white", background:"#1E90FF"}}className={styles.submit}>Submit</Button>
