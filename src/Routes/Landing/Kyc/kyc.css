@@ -1,0 +1,96 @@
+.root{
+    padding:10px
+}
+.form{
+    width:50%;
+    text-align:center;
+    margin:0 auto;
+    padding:8px 0
+}
+
+.header{
+    font-weight:900; 
+    font-size:19px; 
+    color:#807e7e;
+    display:inline-block;
+    width:66%;
+    text-align:center
+}
+
+.subHeader{
+   color:grey;
+   font-size:15px;
+   font-weight:600
+}
+
+.colFlex1 {
+    width: 45%;
+    margin: 6px 0;
+}
+
+.colFlex {
+    float: left;
+    width: 45%;
+    margin-top: 6px;
+}
+
+.textInput{
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.rowFlex{
+    display:flex;
+    justify-content: space-between;
+}
+
+.rowFlex1{
+    display:flex;
+    justify-content: space-between;
+    margin:20px 0;
+}
+
+.address{
+    margin:2% 0
+}
+
+.footer{
+    width:100%;
+    text-align: center;
+    padding:10px 0;
+    position:fixed;
+    bottom:0;
+    background: white;
+}
+
+.formContainer{
+    padding-bottom: 50px;
+}
+
+.chooseFileButton{
+    background: rgb(37,178,73);
+    color: white;
+    padding: 5px;
+    text-align: center;
+    border-radius: 7px;
+    cursor: pointer;
+}
+  
+.imgPreview img{
+    width: 20%;
+    display: inline-block;
+}
+
+.submitContainer{
+ margin:2% 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .footer{
+        font-size: 10px;
+    }
+}
