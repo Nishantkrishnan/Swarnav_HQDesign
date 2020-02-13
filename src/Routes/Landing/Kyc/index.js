@@ -104,7 +104,7 @@ class Kyc extends Component {
             <img src="../../src/images/hq_mobile.png" className={classes.headerLogo}/>
             </Button>
           }
-          <span className={styles.header}>Kyc Form</span>
+          <span className={styles.header}>KYC Form</span>
         </div>
         <div className={screen.width>768?styles.form:""}>
           <div className={styles.subHeader}>Please provide following details</div>
