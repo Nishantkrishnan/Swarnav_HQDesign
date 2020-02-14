@@ -48,9 +48,8 @@
         "NODE_ENV": "development",
         "PORT": 8180,
         "API_HOST": "139.59.13.211",
-        "API_PORT": "3000",
         "MODULE_NAME": "Test Server",
-        "FRONTEND": "http://139.59.13.211"
+        "FRONTEND": "http://139.59.13.211:8180"
       }
     },
     "start-staging": {
@@ -158,7 +157,6 @@
     "react-infinite-scroller": "^1.1.4",
     "react-linechart": "^1.1.12",
     "react-material-ui-calendar": "^0.2.3",
-    "react-phone-input-2": "^2.11.0",
     "react-progressbar": "^15.4.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

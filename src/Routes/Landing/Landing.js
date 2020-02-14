@@ -15,7 +15,6 @@ import VisitReason from './VisitorManagement/VisitReason/VisitReason';
 import PhotoCapture from './VisitorManagement/PhotoCapture/PhotoCapture';
 import VisitTermsCondition from './VisitorManagement/VisitTermsCondition/VisitTermsCondition';
 import IdCardGenerate from './VisitorManagement/IdCardGenerate/IdCardGenerate';
-import Kyc from './Kyc';
 
 const Landing = () => {
   const currentPath = window.location.pathname;
@@ -65,7 +64,6 @@ const Landing = () => {
               <Route path="/about_us" component={AboutUs} />
               <Route path="/terms_condition" component={TermsCondition} />
               <Route path="/contact_us" component={ContactUs} />
-              <Route path="/upload/:userId" component={Kyc} />
               <Route exact path="/" component={Intro} />
               <Redirect from="/*" to="/login" />
             </Switch>
