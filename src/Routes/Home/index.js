@@ -160,9 +160,10 @@ const customStyles = {
       ...base,
       zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
       position:"absolute",
+
       border:"transparent",
       borderColor: "#e0e0e0",
-      width:screen.width>768?"10%":"38%",
+
     })
 },
 control: base => ({
@@ -257,7 +258,9 @@ class Home extends Component {
     const {classes}= this.props
     const { textColor, flagValue, flag, locationVal } = this.state;
     const { changeColor, underlineOnLink } = this;
+
   //  console.log("history:",history);
+  
     // const ValueContainer = ({ children, ...props }) => {
     //   return (
     //     components.ValueContainer && (
@@ -276,7 +279,6 @@ class Home extends Component {
     //     )
     //   );
     // };
-
     // const DropdownIndicator = props => {
     //   return (
     //     components.DropdownIndicator && (
@@ -335,12 +337,17 @@ class Home extends Component {
               this.props.displayLocation === true && this.props.currentLocation &&
               <Card
                 style={{
+ 
                   width: "150%",
+                  width: "100%",
+
                   // height: "75%",
                   textAlign: "start",
                   marginTop: "2.5%",
                   marginBottom:"2.5%",
+
                   background: "#e0e0e0",
+
                   display: "inline-flex",
                     boxShadow:'none',
                 }}
@@ -378,7 +385,11 @@ class Home extends Component {
                    {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
                         onChange={this.handleSelect}
                         defaultValue={this.state.currentLocation}
+
                         value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline
+
+                        value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline    
+
                     >
                         {this.state.locations && this.state.locations.map(element => {
                             if(element.id === this.state.currentLocation){
@@ -388,14 +399,18 @@ class Home extends Component {
                             }else {
                            return(
                                 <MenuItem value={element.id}  key={element.id} >
-                           {element.address_line1}
+t.address_line1}
                            </MenuItem>)
                             }
                             })}
                       </Select> */}
                       <div>
                        <Select
+ HEAD
                           placeholder={""}
+
+                          placeholder=""
+
                           value={locationVal}
                           options={
                             this.state.locations && this.state.locations.map(location =>{
@@ -411,6 +426,11 @@ class Home extends Component {
                     {/* </FormControl> */}
 
                   </Grid>
+
+
+                   
+                  </Grid>
+                  
 
               {/* <Select
               disableUnderline
