@@ -1,0 +1,29 @@
+.infLoad {
+  text-align: center;
+}
+
+.infLoad img {
+  width: 40px;
+}
+
+.mcItem {
+  width: 100%;
+  padding: 3px 0;
+}
+
+.mcItem span {
+  padding-left: 8px;
+}
+
+.mcItem i {
+  font-size: 12px;
+}
+
+.disabledOption {
+  color: #bbb;
+  cursor: not-allowed;
+}
+
+.cntManagePost {}
+
+.deletePost {}

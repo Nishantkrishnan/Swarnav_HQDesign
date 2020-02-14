@@ -1,0 +1,152 @@
+.noDecoration {
+  /* text-decoration: none;
+  color: #fff;
+ 
+  display: block;
+  text-align: center;
+  background-color: #ccc; */
+}
+
+.noDecoration.category {
+  /* height: 178px;
+  overflow: hidden; */
+}
+
+.noDecoration span {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.facilityMainCont {
+  display: block;
+}
+
+.itemCont {
+  position: relative;
+}
+
+.noDecoration img {
+  width: 100%;
+}
+
+.noDecoration:hover, .noDecoration:focus {
+  text-decoration: none;
+  color: #fff;
+}
+
+.assetCont {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.assetCont p {
+  padding: 15px;
+  margin: 0;
+  font-size: 15px;
+}
+
+.footerGap {
+  height: 50px;
+}
+
+/* Category Items */
+
+/* .ciContainer {
+  display: inline-block;
+  width: 100%;
+} */
+
+.categoryItems {
+  width: 33.33333333%;
+  display: inline-block;
+  min-height: 1px;
+  padding: 0 5px;
+  height: 180px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.categoryItems .noDecoration{position: relative;}
+
+.categoryItems .noDecoration span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 18px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.53);
+  width: 100%;
+  padding: 6px 0;
+}
+
+.backBtn {
+  top: 15px;
+  left: 15px;
+  background-color: #00AD44;
+  border: 1px solid #00AD44;
+  padding: 8px 15px;
+  border-radius: 0;
+  color: #fff;
+  -webkit-box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.absolutePos {
+  position: absolute;
+}
+
+.facilityItem {
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+.proceedBook {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.proceedBook button {
+  background-color: #00AD44;
+  border: 1px solid #00AD44;
+  font-size: 18px;
+  display: inline-block;
+  padding: 10px;
+  width: 100%;
+  font-weight: 600;
+  border-radius: 0;
+  color: #fff;
+  letter-spacing: 1px;
+  -webkit-box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px 1px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.proceedBook button:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+  text-decoration: none;
+}
+
+/* .categoryItems img {
+  max-width: 33.33333333%;
+} */
+
+@media (max-width: 768px) {
+  .categoryItems {
+    width: 50%;
+    display: inline-block;
+    position: relative;
+    min-height: 1px;
+    padding: 0 5px;
+  }
+
+  .margin_bottom_20 {
+    margin-bottom: 20px;
+  }
+}

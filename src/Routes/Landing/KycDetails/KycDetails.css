@@ -1,0 +1,19 @@
+
+.formStyle{
+    margin:1% 0;
+}
+
+.formStyleFlex{
+    margin:1% 0;
+    width:45%;
+}
+
+.addImageIcon{
+    width:35%
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+

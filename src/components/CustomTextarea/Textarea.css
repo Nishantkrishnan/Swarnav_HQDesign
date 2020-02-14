@@ -1,0 +1,13 @@
+.inputError {
+  border-bottom: 1px solid #de1c1c !important;
+}
+
+.message {
+  color: #de1c1c !important;
+}
+
+.textarea {
+  border: none;
+  resize: none;
+  outline: none;
+}

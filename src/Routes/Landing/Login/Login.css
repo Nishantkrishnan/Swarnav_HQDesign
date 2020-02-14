@@ -1,0 +1,148 @@
+.wrapper {
+  height: 100vh;
+  position: relative;
+  /* background: url('../../images/shopkickLogin.jpg') no-repeat; */
+  background-size: cover;
+}
+
+.container {
+  width: 420px;
+  height: 468px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100px;
+  margin: auto;
+}
+
+.logo {
+  display: block;
+  /* background: url('../../../images/logo.svg') no-repeat center; */
+  background-size: 291px 53px;
+  width: 291px;
+  height: 53px;
+  margin: auto;
+  text-align: center;
+  cursor: default;
+}
+
+.fieldsWrapper {
+  margin-bottom: 55px;
+}
+
+.inputField {
+  width: 100%;
+  height: 50px;
+  background: #efefef;
+  display: block;
+  margin-top: 40px;
+  border-radius: 5px;
+  color: #000000;
+  padding: 15px;
+  font-size: 13px;
+}
+
+.inputField:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #efefef inset;
+}
+
+.link {
+  margin: 3px 0 0;
+  float: right;
+  text-decoration: none !important;
+  color: #58bce4 !important;
+  font-size: 12px !important;
+}
+
+.loginButton {
+  width: 100%;
+  height: 50px;
+  background: #0098d6;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 100;
+  letter-spacing: 0.3px;
+  transition: 100ms all ease-in-out;
+}
+
+.remember {
+  color: #484747;
+  margin: 40px 0 10px;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.loginMessage {
+  position: absolute;
+  top: 150px;
+}
+
+.formSignin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.loginBox {
+  padding-top: 40px;
+  background-color: #f5f5f5;
+  text-align: center;
+  position: fixed;
+  padding: 100px 0 20px;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.formSignin .checkbox {
+  font-weight: 400;
+}
+
+.formSignin .formControl {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 5px;
+  width: 300px;
+}
+
+.formSignin .formControl:focus {
+  z-index: 2;
+}
+
+.formSignin input[type="phone"] {
+  width: 100%;
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.formSignin input[type="password"] {
+  width: 100%;
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .loginBox {
+    padding: 60px 0 0;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
+}

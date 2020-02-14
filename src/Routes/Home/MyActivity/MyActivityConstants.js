@@ -1,0 +1,11 @@
+export const GET_MY_ACTIVITY = '/home/getMyActivity';
+export const STORE_MY_ACTIVITY = '/home/storeMyActivity';
+export const CANCEL_FACILITY_BOOKING = '/myactivity/cancelFacilityBooking';
+export const CANCEL_TICKET = '/myactivity/cancelTicketBooking';
+export const CANCEL_SERVICE_REQUEST = '/myactivity/cancelServiceRequest';
+export const COMPLETED = 'completed';
+export const INPROGRESS = 'in_progress';
+export const UPCOMING = 'upcoming';
+export const CANCELED = 'canceled';
+export const NO_SERVICE_BOOKING_FOUND = 'No Activity Found In Service Booking';
+export const NO_FACILITY_BOOKING_FOUND = 'No Activity Found In Facility Booking';

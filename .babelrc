@@ -1,0 +1,80 @@
+{
+  "presets": [
+    "react",
+    "es2015",
+    "stage-0"
+  ],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-async-to-generator",
+    "transform-regenerator",
+    "transform-runtime",
+    "add-module-exports",
+    "transform-decorators-legacy",
+    "transform-react-display-name"
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node",
+        [
+          "react-css-modules",
+          {
+            "generateScopedName": "[local]"
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "react-css-modules",
+          {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]"
+          }
+        ]
+      ]
+    },
+    "development": {
+      "plugins": [
+        [
+          "react-hot-loader/babel",
+          "react-css-modules",
+          "transform-class-properties",
+          {
+            "generateScopedName": "[name]__[local]___[hash:base64:5]"
+          }
+        ],
+        [
+          "typecheck",
+          {
+            "disable": {
+              "production": true
+            }
+          }
+        ],
+        [
+          "react-transform",
+          {
+            "transforms": [
+              {
+                "transform": "react-transform-catch-errors",
+                "imports": [
+                  "react",
+                  "redbox-react"
+                ]
+              }
+            ]
+          }
+        ],
+        [
+          "transform-class-properties",
+          {
+            "spec": true
+          }
+        ]
+      ]
+    }
+  }
+}
