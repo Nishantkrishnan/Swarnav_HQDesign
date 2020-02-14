@@ -70,7 +70,7 @@ const styles = theme => ({
     fontSize:"16px"
   },
   closeButton: {
-
+   background:'transparent  !important'
     // width: "18.7px",
     //  height: "18.7px",
   },
@@ -143,6 +143,7 @@ const styles = theme => ({
     borderRadius: "31px",
     display: "flex",
     marginTop: "2%",
+
     paddingLeft: "6%",
     paddingRight: "6%",
     color: "white",

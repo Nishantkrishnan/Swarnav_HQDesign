@@ -182,7 +182,9 @@ const design = theme => ({
     fontSize: "14px",
     fontFamily: "Roboto Regular",
     color: "#4E4B4B",
-    marginLeft:"%"
+    marginLeft:"%",
+    marginBottom:'3%',
+
     // paddingRight:'40px'
   },
   // sharePaper: {
@@ -502,7 +504,7 @@ class Dashboard extends Component {
                         boxShadow: "none",
                         marginBottom: "1%"
                       }}
-                     
+
                     >
                       <CardContent
                         style={{
@@ -563,7 +565,7 @@ class Dashboard extends Component {
                           >
                             {" "}
                             {post.posted_by.user_id ===
-                              this.props.profile.user.id && 
+                              this.props.profile.user.id &&
                               <ManagePost
                                 post={post}
                                 showEditModal={this.showEditModal}
@@ -610,10 +612,10 @@ class Dashboard extends Component {
                          {post.media.map((postss) => {
                           console.log("posts:",postss);
                           return <CardMedia component="img" />;
-                        })} 
+                        })}
                         </Grid>
-                       
-{/* 
+
+{/*
                         {post.media.map((postss,key1) => {
                           console.log("posts:",postss);
                           return <CardMedia component="img" />;
@@ -715,7 +717,7 @@ class Dashboard extends Component {
                           </Grid>
                         </Grid>
                       {/* </CardActions> */}
-                     
+
                       {this.state.open&&this.state.id==post.post_id ? (
 
                         <Grid
@@ -739,7 +741,7 @@ class Dashboard extends Component {
 
                                 </Link>
                               }
-                              
+
                           {
                           post.comments.data.map((comment) => {
                             console.log("comments coming:",comment);
@@ -788,12 +790,12 @@ class Dashboard extends Component {
                               </div>
                             );
                           })}
-                          
+
 
                           {/* <Modal show={this.state.modalShowHide} onHide={this.closeModal}>
             <Card>hiii</Card>
           </Modal> */}
-        
+
             <CommentForm
               postId={this.state.id}
               profile={this.props.profile}
@@ -801,9 +803,9 @@ class Dashboard extends Component {
               key={this.state.id}
               // toggleCommentDialogClose={this.toggleCommentDialogClose}
             />
-         
+
                         </Grid>
-                       ) : null} 
+                       ) : null}
 
                       </CardContent>
                     </Card>

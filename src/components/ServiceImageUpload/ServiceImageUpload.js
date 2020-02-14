@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FlipMove from 'react-flip-move';
 import classNames from 'classnames';
-import styles from './ImageUpload.css';
+import styles from './ServiceImageUpload.css';
 import {
   Button,
   Grid,TextField,Paper
@@ -10,7 +10,7 @@ import {
 import { withStyles } from "@material-ui/core/styles";
 const design = theme => ({
   imgBtn: {
-    background:'transparent  !important',  position:'relative', marginTop:"%",left:'495px',bottom:"65px",
+    backgroundColor:'transparent',  position:'relative', marginTop:"%",left:'495px',bottom:"65px",
     ["@media (min-width:200px) and (max-width:1280px)"]: {
       left:'260px'
     },
@@ -32,7 +32,7 @@ const design = theme => ({
     },
   },
 })
-class ImageUpload extends Component {
+class ServiceImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -132,7 +132,7 @@ class ImageUpload extends Component {
     if (this.state.notAcceptedFileType.length > 0) {
       notAccepted = this.state.notAcceptedFileType.map((error, index) => {
         return (
-          <FlipMove enterAnimation="none" leaveAnimation="fade" duration={750} style={{color:'red', textAlign:'center',position:"fixed",marginTop:'%',fontFamily:'Roboto Regular',fontSize:'14px',marginLeft:"4%"}} key={index}>
+          <FlipMove enterAnimation="none" leaveAnimation="fade" duration={750} style={{color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px'}} key={index}>
             <div  key={index} >
               * {error} {this.props.fileTypeError}
             </div>
@@ -143,7 +143,7 @@ class ImageUpload extends Component {
     if (this.state.notAcceptedFileSize.length > 0) {
       notAccepted = this.state.notAcceptedFileSize.map((error, index) => {
         return (
-          <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px',marginLeft:"4%",position:'fixed' }} key={index}>
+          <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px' }} key={index}>
             <div className={classNames(this.props.errorClass)} key={index} style={this.props.errorStyle}>
               * {error} {this.props.fileSizeError}
             </div>
@@ -153,7 +153,7 @@ class ImageUpload extends Component {
     }
     if (this.state.maxFilesError) {
       notAccepted = (
-        <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',marginLeft:"4%",position:'fixed',fontSize:'14px'}}>
+        <FlipMove enterAnimation="none" leaveAnimation="fade" style={{ color:'red', marginLeft:'4%',fontFamily:'Roboto Regular',fontSize:'14px'}}>
           <div className={classNames(this.props.errorClass)} style={this.props.errorStyle}>
             * {this.state.maxFilesError}
           </div>
@@ -219,7 +219,7 @@ class ImageUpload extends Component {
     );
   }
 }
-ImageUpload.defaultProps = {
+ServiceImageUpload.defaultProps = {
   className: '',
   buttonClassName: {},
   buttonStyles: {},
@@ -241,7 +241,7 @@ ImageUpload.defaultProps = {
   errorStyle: {},
   singleImage: false,
 };
-ImageUpload.propTypes = {
+ServiceImageUpload.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   onChange: PropTypes.func,
@@ -265,4 +265,4 @@ ImageUpload.propTypes = {
   errorStyle: PropTypes.object,
   singleImage: PropTypes.bool,
 };
-export default withStyles(design)(ImageUpload);
+export default withStyles(design)(ServiceImageUpload);

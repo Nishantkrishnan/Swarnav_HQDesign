@@ -7,18 +7,19 @@
 .width_percent {
   width: 95% !important;
 }
-@keyframes text {  
-  
+@keyframes text {
+
   0% {
    transform: translateX(0);
   }
   50% {
-   transform: translateX(-30%);
+   transform: translateX(-80%);
   }
   100% {
    transform: translateX(0);
   }
-} 
+}
+
 .header_width_percent {
   width: 91% !important;
 }
@@ -195,14 +196,12 @@
   line-height: 40px;
   text-indent: 20px;
 }
-
 .sidebarNav li a {
   color: #999999;
   display: block;
   text-decoration: none;
   padding-left: 60px;
 }
-
 .sidebarNav li a span:before {
   position: absolute;
   left: 0;
@@ -211,29 +210,24 @@
   width: 20px;
   line-height: 18px;
 }
-
 .sidebarNav li a:hover,
 .sidebarNav li.active {
   color: #fff;
   background: rgba(255,255,255,0.2);
   text-decoration: none;
 }
-
 .sidebarNav li a:active,
 .sidebarNav li a:focus {
   text-decoration: none;
 }
-
 .sidebarNav > .sidebarBrand {
   height: 65px;
   line-height: 60px;
   font-size: 18px;
 }
-
 .sidebarNav > .sidebarBrand a {
   color: #999999;
 }
-
 .sidebarNav > .sidebarBrand a:hover {
   color: #fff;
   background: none;

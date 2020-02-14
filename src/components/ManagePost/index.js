@@ -14,7 +14,9 @@ import { withStyles } from "@material-ui/core/styles";
 
 const design = theme => ({
   dropBtn: {
-    borderColor:'transparent',
+    borderColor:'white',
+    border:"none",
+    background:'transparent !important',
 
     ['@media (min-width:300px) and (max-width:375px)']: {
         marginRight:"10px",

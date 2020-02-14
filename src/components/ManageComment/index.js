@@ -14,7 +14,8 @@ import { withStyles } from "@material-ui/core/styles";
 
 const design = theme => ({
   cmntDropBtn: {
-       border:'transparent' ,
+       border:'transparent  !important' ,
+       borderColor:'white',
         outline: "none" ,
     ['@media (min-width:300px) and (max-width:375px)']: {
       marginRight: "22px",
