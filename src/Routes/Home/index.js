@@ -184,7 +184,7 @@ valueContainer: base => ({
 }),
 dropdownIndicator: provided => ({
   ...provided,
-  display: "none"
+// display: "none"
 }),
 singleValue: (provided, state) => {
   const overflow = "unset";

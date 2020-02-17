@@ -15,7 +15,9 @@ import { withStyles } from "@material-ui/core/styles";
 const design = theme => ({
 UserCard:{
   width:'66%',
-  marginLeft:'2%',background:'red',
+  boxShadow:'none',
+  
+  marginLeft:'1%',background:'red',
   ["@media (max-width:48em)"]: {
     width:'95%'
   },

@@ -165,13 +165,15 @@ const design = theme => ({
   likeButton: {
     textTransform: "none",
     fontSize: " 16px",
-    color: " #6F6F6F"
+    color: " #6F6F6F",
+    background:"transparent !important",
     // marginLeft:"40%",
   },
   commentButton: {
     textTransform: "none",
     fontSize: " 16px",
     color: " #6F6F6F",
+    background:"transparent !important",
     // marginLeft:"30%",
     ["@media (max-width:360px)"]: {
       // marginLeft: "-22px"

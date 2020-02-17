@@ -44,6 +44,19 @@ const design = theme => ({
         display: "inline-flex",
         marginBottom: "2%"
 
+    },
+    timerGrid:{
+        background: "#FFFFFF",
+                                     border: "1px solid #DADADA",
+                                        borderRadius: "5px",
+                                        borderRadius: "5px",
+                                        height: "100%",
+                                        paddingTop: "5%",
+                                        paddingLeft:'4%',
+                                        paddingRight:'2%',
+                                        ["@media (max-width:70em)"]: {
+                                            paddingTop: "9%",
+                                        },
     }
 
 });
@@ -291,6 +304,9 @@ return `${obj.from_time}`;
 
 }
 
+disableWeekends(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
 
     render() {
 
@@ -299,14 +315,12 @@ return `${obj.from_time}`;
         let { selectedDate, selectedValue } = this.state;
         const { handleSelect } = this;
         console.log(this.state, "state")
+        let today = new Date()
         selectedValue=selectedValue.map(ele=>this.getStrFromObject(ele))
         let selectedOptions = [];
         // let epocKey=[];
 
         console.log(selectedOptions, "selectedOptions")
-
-
-
         {
             this.state.availableSlots && this.state.availableSlots.map(item => {
                 let key = moment.unix(item.from_time).format('LT') + " to " + moment.unix(item.to_time).format('LT');
@@ -315,8 +329,6 @@ return `${obj.from_time}`;
 
             })
         }
-
-
         if (!this.state.availableMonths) {
             return (<Loader />);
         }
@@ -398,22 +410,22 @@ return `${obj.from_time}`;
                                     // height:'120%',
                                     paddingLeft: "2%",
                                     // marginBottom:'10%',
-                                    width: "90%"
+                                    // width: "90%"
                                 }}
                             >
                                 {/* <Typography
 
                 > */}
                                 <MuiThemeProvider theme={customTheme}>
-                                    <MuiPickersUtilsProvider utils={DateFnsUtils} style={{ backgroundColor: "red" }}>
-                                        <KeyboardDatePicker style={{ width: '100%', marginBottom: "4.5%", fontSize: '18px', fontFamily: 'Roboto Regular' }}
-                                            InputProps={{
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                        <KeyboardDatePicker style={{ width: '100%',paddingBottom:'2%'  }}
+                                           minDate={today}
+                                           shouldDisableDate={this.disableWeekends}
+                                           InputProps={{
                                                 disableUnderline: true,
                                                 style: { fontSize: 14 },
                                                 fontFamily: 'Roboto Regular'
-                                                // classes: {
-                                                //   input: classes.resize,
-                                                // },
+
                                             }}
                                             variant="inline"
                                             format="dd/MM/yyyy"
@@ -443,22 +455,15 @@ return `${obj.from_time}`;
                                 style={{ background: "", paddingLeft: "1%" }}
                             >
                                 <Typography
-                                    style={{
-                                        background: "#FFFFFF",
-                                        border: "1px solid #DADADA",
-                                        borderRadius: "5px",
-                                        borderRadius: "5px",
-                                        height: "100%",
-                                        paddingLeft: "2%"
-                                    }}
-                                    value={this.props.someText}
+                                   className={classes.timerGrid}
+                                    // value={this.props.someText}
                                 // onChange={this.handleChangeTime}
                                 >
-                                    <Grid container style={{ display: "inline-flex", background: '', marginTop: "4.5%" }}>
-                                        <Grid item lg={11} md={11} sm={11} xs={11} style={{ background: "", paddingLeft: "2%" }}>
+                                    <Grid container style={{ display: "inline-flex"}}>
+                                        <Grid item lg={11} md={11} sm={11} xs={10} style={{}}>
                                             {this.state.availableSlots &&
                                             <FormControl>
-                                                <Select style={{width:"200px",position:"relative",marginTop:"1.5%"}}
+                                                <Select style={{fontSize:"14px",fontFamily: 'Roboto Regular'}}
                                                   multiple
                       disableUnderline
                       displayEmpty
@@ -470,7 +475,7 @@ return `${obj.from_time}`;
                                                 >
                                                     {selectedOptions.map(option => (
 
-                                                        <MenuItem key={option.value} value={this.getStrFromObject(option.value)}>
+                                                        <MenuItem key={option.value} value={this.getStrFromObject(option.value)} style={{fontSize:'14px',fontFamily:'Roboto Regular'}}>
                                                             {option.label}
                                                         </MenuItem>
                                                     ))}
@@ -480,15 +485,10 @@ return `${obj.from_time}`;
                                         </Grid>
                                         <Grid
                                             item
-                                            lg={1} md={1} sm={1} xs={1}
-                                            style={{
-                                                position: "relative",
-                                                marginTop: "2%",
-                                                right: "1px",
-                                                width: '10px'
-                                            }}
+                                            lg={1} md={1} sm={1} xs={2}
+                                           style={{background:'',display:'flex',alignItems:"center",justifyContent:"center",paddingBottom:'2%'}}
                                         >
-                                            <i class="material-icons" style={{ fontSize: '14px' }}>
+                                            <i class="material-icons"  style={{fontSize:"14px",}}>
                                                 access_time
                   </i>
                                         </Grid>
