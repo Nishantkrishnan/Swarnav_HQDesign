@@ -436,6 +436,7 @@ disableWeekends(date) {
                                             KeyboardButtonProps={{
                                                 "aria-label": "change date"
                                             }}
+                                            PopoverProps={{style: {...{left:"35px"}}}}
                                         />
                                     </MuiPickersUtilsProvider>
                                 </MuiThemeProvider>

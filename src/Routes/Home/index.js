@@ -201,7 +201,7 @@ class Home extends Component {
   state = {
     textColor: "red",
     textDecoration: "none",
-    locationVal:""
+    locationVal:"Ashwith"
   };
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
