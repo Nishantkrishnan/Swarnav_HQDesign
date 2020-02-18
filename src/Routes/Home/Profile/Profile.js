@@ -224,7 +224,7 @@ class Profile extends Component {
                     textTransform: "none",
                     textDecoration: "none"
                   }
-            }>speaker_notes</i>
+            }>history</i>
 
            <Typography  className={classes.textTypography}
            style={

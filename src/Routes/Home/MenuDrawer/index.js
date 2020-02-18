@@ -117,7 +117,9 @@ class SwipeableTemporaryDrawer extends React.Component {
             </Link>
           </Typography>
           <Typography className={classes.listItems}>
-            <i class="material-icons">speaker_notes</i>
+          <i class="material-icons">
+history
+</i>
             <Link
               className={classes.linkTitle}
 onClick={()=>window.location.href='/my_bookings/services'}

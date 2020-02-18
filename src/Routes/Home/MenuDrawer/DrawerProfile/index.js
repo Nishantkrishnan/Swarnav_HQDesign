@@ -115,7 +115,7 @@ class DrawerProfile extends React.Component {
         </CardActionArea>
 
         <Typography className={classes.profileName}>
-          {this.state && this.state.data && this.state.data.user.first_name}    
+          {this.state && this.state.data && this.state.data.user.first_name}       
           {this.state && this.state.data && this.state.data.user.last_name}
         </Typography>
 

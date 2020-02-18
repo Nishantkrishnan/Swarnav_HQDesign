@@ -184,7 +184,7 @@ valueContainer: base => ({
 }),
 dropdownIndicator: provided => ({
   ...provided,
-// display: "none"
+display: "none",
 }),
 singleValue: (provided, state) => {
   const overflow = "unset";
@@ -247,6 +247,7 @@ class Home extends Component {
     }
   }
   handleSelect = (event) => {
+  
     this.setState({locationVal:event})
     const changedLocation = this.state.locations.filter(loc => loc.id == event.target.value)
     this.props.dispatch(changeLocations(changedLocation[0]));
@@ -395,7 +396,7 @@ class Home extends Component {
                       </Select> */}
                       <div>
                        <Select
-                          placeholder={""}
+                          placeholder=""
                           value={locationVal}
                           options={
                             this.state.locations && this.state.locations.map(location =>{
