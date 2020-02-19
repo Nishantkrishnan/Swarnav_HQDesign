@@ -201,7 +201,9 @@ class Home extends Component {
   state = {
     textColor: "red",
     textDecoration: "none",
-    locationVal:"Ashwith"
+    locationVal:"",
+    locations:null,
+    currentLocation:null
   };
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
@@ -258,7 +260,13 @@ class Home extends Component {
     const {classes}= this.props
     const { textColor, flagValue, flag, locationVal } = this.state;
     const { changeColor, underlineOnLink } = this;
-  //  console.log("history:",history);
+    let currentVal = "";
+    if(this.state.currentLocation){
+      currentVal = {value:this.state.currentLocation.address_line1, label:this.state.currentLocation.address_line1}
+    }
+    console.log("currentVal",currentVal);
+    console.log("locationVal",locationVal);
+
     // const ValueContainer = ({ children, ...props }) => {
     //   return (
     //     components.ValueContainer && (
@@ -397,7 +405,8 @@ class Home extends Component {
                       <div>
                        <Select
                           placeholder=""
-                          value={locationVal}
+
+                          value={locationVal?locationVal:currentVal}
                           options={
                             this.state.locations && this.state.locations.map(location =>{
                               return ({

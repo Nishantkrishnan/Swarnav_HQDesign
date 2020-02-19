@@ -374,7 +374,7 @@ disableWeekends(date) {
                                 display: "inline-flex",
                                 boxShadow: "none",
                                 background: "#EDEDED",
-                                height: "15vh"
+                                height: ""
                             }}
                         >
                             <CardMedia
@@ -389,7 +389,7 @@ disableWeekends(date) {
                                 component="img"
                                 image={this.props.facility.images[0].original}
                             />
-                            <Typography style={{ marginTop: "6%", fontSize: "18px", fontFamily: 'Roboto Medium', marginLeft: "2%", marginBottom: '1%' }}>
+                            <Typography  style={{ width:"100%",paddingTop: "4%", fontSize: "16px", fontFamily: 'Roboto Medium', paddingLeft: "1%" }}>
                                 {this.props.facility.title}
                             </Typography>
                         </Card>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FlipMove from 'react-flip-move';
 import classNames from 'classnames';
-import styles from './ImageUpload.css';
+import styles from './ImageUpload1.css';
 import {
   Button,
   Grid,TextField,Paper
@@ -32,7 +32,7 @@ const design = theme => ({
     },
   },
 })
-class ImageUpload extends Component {
+class ImageUpload1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -202,9 +202,9 @@ class ImageUpload extends Component {
           />
           </span> }
 <label htmlFor="contained-button-file">
-          <Button  component="span" className= {classes.imgBtn} >
+          {/* <Button  component="span" className= {classes.imgBtn} >
              <i class="material-icons">photo</i>
-          </Button>
+          </Button> */}
         </label>
 {/* <label htmlFor="contained-button-file">
           <Button  component="span" style={{backgroundColor:'transparent'}} >
@@ -219,7 +219,7 @@ class ImageUpload extends Component {
     );
   }
 }
-ImageUpload.defaultProps = {
+ImageUpload1.defaultProps = {
   className: '',
   buttonClassName: {},
   buttonStyles: {},
@@ -241,7 +241,7 @@ ImageUpload.defaultProps = {
   errorStyle: {},
   singleImage: false,
 };
-ImageUpload.propTypes = {
+ImageUpload1.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   onChange: PropTypes.func,
@@ -265,4 +265,4 @@ ImageUpload.propTypes = {
   errorStyle: PropTypes.object,
   singleImage: PropTypes.bool,
 };
-export default withStyles(design)(ImageUpload);
+export default withStyles(design)(ImageUpload1);

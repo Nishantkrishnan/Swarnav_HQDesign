@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ImageUploader from '../../../components/ImageUpload/ImageUpload';
+import ImageUploader from '../../../components/ImageUpload1/ImageUpload1';
 import { Loader } from '../../../containers/Loader/Loader';
 import bookServiceSelector from './BookService.selectors';
 import {
@@ -255,7 +255,7 @@ class BookService extends Component {
                   borderRadius: "5px",
                   borderRadius: "5px",
                   // height:'120%',
-                  paddingLeft: "2%",
+                  paddingLeft: "3.5%",
                   // width: "90%"
                 }}
               >
@@ -432,7 +432,16 @@ class BookService extends Component {
               <Typography style={{ fontFamily: "Roboto Regular",fontSize:'12px' }}>
                 Attach Picture (jpg, jpeg, png)
               </Typography>
+
+          
             </Button>
+            <ImageUploader
+           onChange={this.onDrop}
+           // maxFileSize={10485760}
+           // maxFiles={5}
+           // label="Max image size: 10MB, Max images: 5, file type: jpg | jpeg | gif | png"
+           withPreview
+         />
             </label>
           </Grid>
           <Button
