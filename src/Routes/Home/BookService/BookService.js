@@ -25,6 +25,10 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 const design = theme => ({
+
+  attachImgBtn:{
+    background:"transparent ! important"
+  },
   meetingRoomsCard:{
     width: "66%",
     ["@media (max-width:70em)"]: {
@@ -423,8 +427,7 @@ class BookService extends Component {
         /> */}
         <label htmlFor="contained-button-file">
             <Button
-              style={{
-              }}
+            className={classes.attachImgBtn}
             >
               <i class="material-icons" style={{}}>
                 attach_file

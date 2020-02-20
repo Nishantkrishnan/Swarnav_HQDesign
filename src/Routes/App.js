@@ -19,7 +19,7 @@ class App extends React.Component {
           showMessageAlert && <MessageAlert />
         }
         {
-          sessionToken ? <Home /> : <Landing />
+          sessionToken ? <Home    /> : <Landing />
         }
       </div>
     );
