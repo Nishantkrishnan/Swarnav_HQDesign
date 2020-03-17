@@ -1,4 +1,234 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  background: #f6f6f8;
+}
 
-  a:active {
-    color: red;
+.width_percent {
+  width: 95% !important;
+}
+@keyframes text {
+
+  0% {
+   transform: translateX(0);
   }
+  50% {
+   transform: translateX(-80%);
+  }
+  100% {
+   transform: translateX(0);
+  }
+}
+
+.header_width_percent {
+  width: 91% !important;
+}
+
+.topHeader {
+  background: #000;
+  color: #fff;
+  padding: 18px 0;
+  margin-bottom: 10px,
+}
+  @media (min-width:200px) {
+    .topHeader{
+    width: "100%";
+    height:''
+  }
+
+  }
+.topHeader h1 {
+  color: #fff;
+  font-size: 20px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+.topLinks {
+  float: right;
+}
+
+.topLinks ul {
+  list-style-type: none;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+}
+
+.topLinks ul li {
+  display: inline-block;
+  margin-left: 24px;
+}
+
+.topLinks ul li:nth-child(1) {
+  margin-left: 0;
+}
+
+.topLinks ul li a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.topLinks ul li a:hover {
+  color: #22f1ea;
+  text-decoration: none;
+}
+
+.footerGap {
+  height: 0;
+}
+
+.rightSideBarFixed {
+  position: fixed;
+  top: 8px;
+  width: 14%;
+}
+
+.rightSideBarRelative {
+  position: relative;
+  width: 100%;
+}
+
+.sidebarWrapperRelative {
+  /* margin-left: -250px;
+  left: 250px;
+  width: 250px; */
+  /* background: #000; */
+  background: #efeded;
+  position: relative;
+  /*height: 90vh;*/
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+  border-radius: 5px;
+}
+
+.sidebarWrapperFixed {
+  background: #efeded;
+  position: fixed;
+  /*height: 90%;*/
+  width: 6.4vw;
+  top: 8px;
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.4s ease 0s;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .topLinks {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    padding: 18px 0;
+    z-index: 1;
+    /* border-top: 1px solid #aaa; */
+  }
+  .topLinks ul {
+    text-align: center;
+  }
+  .footerGap {
+    height: 63px;
+  }
+
+  .width_percent {
+    width: auto !important;
+    margin-bottom: 1vh;
+  }
+
+  .rightSideBarFixed {
+    position: relative;
+    width: 100%;
+  }
+
+  .rightSideBarRelative {
+    position: relative;
+    width: 100%;
+  }
+
+  .sidebarWrapperFixed {
+    display: none;
+  }
+
+  .sidebarWrapperRelative {
+    display: none;
+  }
+  /* .topLinks ul li a {
+    color: #000;
+    font-size: 16px
+  } */
+}
+
+/* RHS Slim Sidebar  */
+
+.sidebarNav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebarNavAnchorh2 {
+  color: #000;
+}
+
+.activeNavBar, .activeNavBar:hover, .activeNavBar:focus {
+  font-size: 20px !important;
+  font-weight: bold;
+  cursor: default;
+  color: #22f1ea !important;
+}
+
+
+
+/* .sidebarNavAnchor {
+  text-align: center;
+  border-bottom: 1px solid;
+} */
+
+/* .sidebarNav li {
+  line-height: 40px;
+  text-indent: 20px;
+}
+.sidebarNav li a {
+  color: #999999;
+  display: block;
+  text-decoration: none;
+  padding-left: 60px;
+}
+.sidebarNav li a span:before {
+  position: absolute;
+  left: 0;
+  color: #41484c;
+  text-align: center;
+  width: 20px;
+  line-height: 18px;
+}
+.sidebarNav li a:hover,
+.sidebarNav li.active {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+.sidebarNav li a:active,
+.sidebarNav li a:focus {
+  text-decoration: none;
+}
+.sidebarNav > .sidebarBrand {
+  height: 65px;
+  line-height: 60px;
+  font-size: 18px;
+}
+.sidebarNav > .sidebarBrand a {
+  color: #999999;
+}
+.sidebarNav > .sidebarBrand a:hover {
+  color: #fff;
+  background: none;
+} */

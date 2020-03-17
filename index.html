@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>GoodWorks HQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"></script> -->
+  <!-- Pusher JS Library -->
+  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.5/push.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script>    
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('c84f164f98584c65f9ea', {
+      cluster: 'ap2',
+      encrypted: true
+    });
+
+    // https://pushjs.org
+    Push.Permission.request();
+    var channel = pusher.subscribe(localStorage.getItem('coworks-accessToken-remember'));
+    channel.bind('notification-event', function (data) {
+      Push.create("GoodWorkCoWorks", {
+        body: data.message,
+        icon: 'icon.png',
+        requireInteraction: true,
+        onClick: function () {
+          window.open("/my_bookings/" + data.booking_type, '_blank');
+          this.close();
+        }
+      });
+    });
+  </script>
+
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

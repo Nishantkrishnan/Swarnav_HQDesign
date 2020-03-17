@@ -1,0 +1,20 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loaderImage {
+  background: url('../../images/loader.gif') no-repeat;
+  width: 100px;
+  height: 100px;
+  background-position: center center;
+  background-size: cover;
+}

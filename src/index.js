@@ -1,12 +1,36 @@
+/* eslint-disable */
+import 'babel-polyfill';
+import createBrowserHistory from 'history/createBrowserHistory';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { AppContainer as HotLoaderAppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import App from './Routes/App';
+import configureStore from './store/configureStore';
+import { Grid, Row } from 'react-bootstrap';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const history = createBrowserHistory();
+export const store = configureStore({}, history);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const renderApp = () => {
+  ReactDOM.render(
+    <HotLoaderAppContainer>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          {/* <Grid> */}
+          {/* <Row className="show-grid"> */}
+          <App />
+          {/* </Row> */}
+          {/* </Grid> */}
+        </ConnectedRouter>
+      </Provider>
+    </HotLoaderAppContainer>,
+    document.getElementById('root'),
+  );
+};
+renderApp();
+if (module.hot) {
+  // the module update from this path onwards... */
+  module.hot.accept();
+}

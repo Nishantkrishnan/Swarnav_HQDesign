@@ -1,0 +1,36 @@
+.headerCell {
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 0;
+  padding: 12px 0;
+  text-align: center;
+  position: relative;
+}
+
+.sortArrows {
+  position: absolute;
+  margin-left: 5px;
+  top: 6px;
+}
+
+.sortArrows i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sortArrows .sortUp {
+  top: 0;
+}
+
+.openRow .sortArrows .sortUp {
+  transform: rotate(180deg);
+}
+
+.sortArrows .sortDown {
+  bottom: 4px;
+  top: 10px;
+}

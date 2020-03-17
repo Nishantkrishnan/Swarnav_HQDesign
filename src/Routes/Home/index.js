@@ -1,282 +1,502 @@
-import React from "react";
-import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-// import styles from "./index.css"
-import { spacing } from "@material-ui/system";
-import Button from '@material-ui/core/Button';
-import { unstable_Box } from '@material-ui/core/Box';
-import { shadows } from '@material-ui/system';
-import Dashboard from "../../component/Dashboard";
-import RightPanel from "../../component/RightPanel";
-import Profile from "../../component/Profile";
-import PostForm from "../../component/PostForm";
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Paper, Card, FormLabel,MenuItem,TextField } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import {BrowserRouter as Router,Route,Link} from "react-router-dom"
-import CommentForm from "../../component/Dashboard/";
-import Facilities from "../Facilities"
-import MyBookings from "../MyBookings"
-import Services from "../Services";
-const styles = theme => ({
+import { BrowserRouter as Router,Route, Switch, Redirect, Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {Badge } from 'react-bootstrap';
+import ScrollUpButton from "react-scroll-up-button";
+// import AdminPanel from './AdminPanel/AdminPanel';
+import Dashboard from './Dashboard/Dashboard';
+import ServiceType from './Services/ServiceType/ServiceType';
+import FacilityType from './Facilities/FacilityType/FacilityType';
+import Profile from './Profile/Profile';
+import BookFacility from './BookFacility/BookFacility';
+import ChangePassword from './ChangePassword/ChangePassword';
+import styles from './index.css';
+import MyActivity from './MyActivity/MyActivity';
+import Feedback from './Feedback';
+import UserProfile from './UserProfile/UserProfile';
+import Following from './Following/Following';
+import Followers from './Followers/Followers';
+import EditProfile from './UpdateProfile';
+import RightPanel from '../../components/RightPanel';
+import { fetchLocations, changeLocations } from '../Home/Locations/Locations.actions';
+import locationSelector from '../Home/Locations/Location.selectors';
+import $ from 'jquery';
+import{ Grid,Button, withStyles,Card,Typography,Hidden,MenuItem,FormControl} from "@material-ui/core";
+import Select from "react-select";
+// import PropTypes from "prop-types";
+import MenuDrawer from "./MenuDrawer"
+import history from "../../utils/history";
+
+var design = theme => ({
+  formControl: {
+    // width: "100%",
+    marginTop:'3%',
+    fontSize:'16px',
+    fontFamily:'Roboto'
+  },
   displayBlock: {
-    display: 'block'
+    display: "block",
+    // fontSize:"16px ! important"
   },
   topHeader: {
-
-    marginLeft:'6.9%',
-    marginRight:'6.9%',
-
-
-
-  },
-  headerLogo:{
-    marginTop:'5%',
-    height:'41px',
-    display: 'inline-flex',
-
-  ['@media (max-width:768px)']: {
-
-  height:'35px'
-  },
-  ['@media (max-width:450px)']: {
-
-    height:'15px',
-    width:'50px'
-
-
+    marginLeft: "6.9%",
+    marginRight: "3.4%",
+    ["@media (max-width:48em)"]: {
+      marginLeft: "1%",
+      marginRight: "1%",
     },
   },
-headerGrid:{
-
-
-},
-  headerLocation: {
-
-
-    fontSize: ' 16px',
-    color: '#7C7C7C',
-    ['@media (max-width:360px)']: {
-
-      fontSize:'14px',
-
-      },
+  headerLogo: {
+    height: "41px",
+    ["@media (max-width:360px)"]: {
+      height: "35px"
+    }
   },
-  headerLocationMenu:{
+  headerLocation: {
+    fontSize: " 16px",
+    color: "#7C7C7C"
+  },
+  headerLocationMenu: {
   },
   iconRight: {
-    width: '0.7%',
-    height: '1.2%',
-    float:'right',
-
-    ['@media (max-width:360px)']: {
-
-      width: '0.7%',
-    height: '0.7%',
+    width: "0.7%",
+    height: "1.2%",
+    float: "right",
+    ["@media (max-width:360px)"]: {
+      width: "0.7%",
+      height: "0.7%"
     },
-
-
+    listColor: {
+      color: "red"
+    }
   },
   listGrid: {
-    textAlign: 'start',
-    marginTop:'1.5%',
-    marginBottom:'1.5%',
+    textAlign: "start",
+    marginTop: "1.5%",
+    marginBottom: "1.5%",
     marginLeft: "6.9%",
-    marginRight:'6.9%'
-
+    marginRight: "6.9%"
   },
   list: {
-    height: '1.1%',
-    textTransform: 'none',
-    textDecoration: 'none',
-    fontSize:'16px'
-,
-
-    fontSize: '16px'
-    , color: ' #343434',
-    ['@media (max-width:45em)']: {
-
-      marginLeft: '0%',
-      marginRight: '0%',
-      fontSize: '12px',
-
+    display: "inline-flex",
+    height: "1.1%",
+    fontSize: "16px",
+    ["@media (max-width:45em)"]: {
+      marginLeft: "0%",
+      marginRight: "0%",
+      fontSize: "12px"
     },
-    ['@media (max-width:22.5em)']: {
-
-      marginLeft: '0%',
-      marginRight: '0%',
-      fontSize: '12px',
-
+    ["@media (max-width:22.5em)"]: {
+      marginLeft: "0%",
+      marginRight: "0%",
+      fontSize: "12px"
     },
-  },
-  listt:{
-    display:'inline-flex',
-
-
+    ["@media (max-width:320px)"]: {
+      fontSize: "10px"
+    }
   },
   viewPage: {
-    backgroundColor: "#eeeeee"
+    backgroundColor: "#eeeeee",
+    // height:'100vh'
   },
   viewProfile: {
-    marginLeft: '6.9%',
-    marginTop: "1%",
+    marginLeft: "6.9%",
+    marginTop: "0.8%",
     width: "18.1%",
-    ['@media (max-width:48em)']: {
-      width: '100%',
-      marginLeft: '1%',
-      marginRight: '1%'
-    },
-
   },
   viewPostForm: {
-    marginLeft: '1%',
-    marginTop: "1%",
-    width: '41.7%',
-
-    ['@media (max-width:48em)']: {
-      width: '100%',
-      marginLeft: '1%',
-      marginRight: '1%'
-    },
-
+    marginLeft: "%",
+    marginTop: "0.8%",
+    width: "66%",
+  //height:'100vh',
+    ['@media (min-width:200px) and (max-width:1280px)']: {
+      width: "100%",
+      marginLeft: "1%",
+      marginRight: "1%"
+    }
   },
   viewDashboard: {
-    marginTop: "1%",
+    // marginTop: "0.8%",
+    // marginLeft:'1%',
+    // width:'66%',
+  },
+  topicons: {
+    marginTop: "0.9%",
+    marginBottom: "0.9%",
+    display: "inline-flex",
+    ["@media (max-width:320px)"]: {
+      margineft: "-10px"
+    }
   },
   viewRightPanel: {
     marginTop: "1%",
-    marginLeft: '1%',
+    marginLeft: "1%",
     width: "24.3%",
-    marginRight: '6.9%',
-    ['@media (max-width:48em)']: {
-      width: '100%',
-      marginLeft: '1%',
-      marginRight: '1%'
-    },
-
-
-  }
-
+    marginRight: "6.9%",
+  },
+  highlightLink: {
+    textTransform: "none",
+    textDecoration: "none",
+    color: "red",
+    fontSize: "16px"
+  },
+  normalLink: {
+    textTransform: "none",
+    textDecoration: "none",
+    color: "black"
+  },
+  gridmobileLogo:{paddingLeft:'3%',
+   ["@media (max-width:1279px)"]: {
+      paddingLeft:'0%'
+    }
+}
 });
-class Home extends React.Component {
-  state = {
-    textColor:null,
-    location: [
-      {
-        locationName: "WhiteField",
-        locationId: "01"
-      },
-      {
-        locationName: "Indira Nagar",
-        locationId: "02"
-      },
 
-    ]
-  };
-changeColor=()=>{
-const {textColor}=this.state
-this.setState({
-  textColor:'red'
+const customStyles = {
+  container: (base, state) => {
+    console.log('this is screen width', screen.width);
+    return ({
+      ...base,
+      // zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
+      position:"absolute",
+      border:"transparent",
+      borderColor: "#e0e0e0",
+      fontSize:'10px',
+      fontFamily:'Roboto Regular',
+      width:screen.width>768?"10%":"38%",
+    })
+},
+control: base => ({
+  ...base,
+  overflow:'hidden',
+  background: "#e0e0e0",
+  border:"transparent",
+  borderColor: "#e0e0e0",
+}),
+valueContainer: base => ({
+ ...base,
+ overflow:"unset !important",
+ whiteSpace: "normal",
+ animationName: styles.text,
+ animationDuration: '5s',
+ animationIterationCount: 'infinite',
+ animationDirection: 'alternate',
+
+}),
+dropdownIndicator: provided => ({
+  ...provided,
+  display: "none"
+}),
+singleValue: (provided, state) => {
+  const overflow = "unset";
+  return { ...provided, overflow};
+},
+indicatorSeparator: base =>({
+  ...base,
+  display: "none"
 })
+};
+
+
+class Home extends Component {
+  constructor(props, context) {
+    super(props, context)
+  this.state = {
+    textColor: "red",
+    textDecoration: "none",
+    locationVal:"",
+    locations: null,
+      currentLocation: null,
+  }}
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+  underlineOnLink = e => {
+    this.setState({
+      textDecoration: "underline",
+      background: "blue"
+    });
+  };
+  static propTypes = {
+    dispatch: PropTypes.func,
+    locations: PropTypes.array,
+  };
+  static defaultProps = {
+    dispatch: f => f,
+    facilityTypes: null,
+    locations: null,
+  };
+
+  componentWillMount(){
+    this.props.dispatch(fetchLocations());
   }
+  componentDidMount(){
+   
+    this.setState({
+      currentLocation: this.props.currentLocation
+    })
+  }
+  componentWillReceiveProps(nextProps){
+    
+    if(nextProps.currentLocation && this.props.currentLocation !== nextProps.currentLocation){
+      this.setState({
+        currentLocation: nextProps.currentLocation
+      })
+    }
+    if(nextProps.locations && this.props.locations !== nextProps.locations){
+  
+      this.setState({
+        locations: nextProps.locations
+      }
+      // , () => {
+      //   this.props.dispatch(changeLocations(this.state.locations[0]));
+      // }
+      )
+    }
+  }
+  handleSelect = (event) => {
+   
+    this.setState({locationVal:event})
+    const changedLocation = this.state.locations.filter(loc => loc.id == event.target.value)
+    this.props.dispatch(changeLocations(changedLocation[0]));
+  }
+
+
   render() {
-    const { classes } = this.props
-    const {location,textColor} =this.state
-    const {changeColor}=this
+    
+    const {classes}= this.props
+    const { textColor, flagValue, flag, locationVal } = this.state;
+    const { changeColor, underlineOnLink } = this;
+    // console.log(state,"state")
+  //  console.log("history:",history);
+    // const ValueContainer = ({ children, ...props }) => {
+    //   return (
+    //     components.ValueContainer && (
+    //       <components.ValueContainer {...props}>
+    //         {!!children && (
+    //          <i class="material-icons"
+    //          style={{
+    //            paddingRight: "120px"
+    //          }}
+    //        >
+    //          room
+    //        </i>
+    //         )}
+    //         {children}
+    //       </components.ValueContainer>
+    //     )
+    //   );
+    // };
+
+    // const DropdownIndicator = props => {
+    //   return (
+    //     components.DropdownIndicator && (
+    //       <components.DropdownIndicator {...props}>
+    //          <i class="material-icons"
+    //             style={{
+    //               paddingLeft: "18%",
+    //               paddingTop: "25%",
+    //               // paddingRight: "120px"
+    //             }}
+    //           >
+    //             room
+    //           </i>
+    //       </components.DropdownIndicator>
+    //     )
+    //   );
+    // };
+
     return (
-
-
-        <Grid >
-
-            <Grid className={classes.topHeader}>
-            <Grid container style={{ display: 'inline-flex',marginTop:'0.5%',marginBottom:'0.5%' }} >
-              <Grid item  md={11} sm={10} xs={10} >
-                <Grid container style={{ display: 'inline-flex', }}>
-                  <Grid item md={2} sm={4} xs={4} >
-                    <Button ><img src="hq_logo.png"  className={classes.headerLogo}/></Button>
-                  </Grid>
-                  <Grid item md={2} sm={4} xs={8} className={classes.headerGrid} >
-                    <Grid container  >
-                    <Grid md={5} sm={5} xs={6} style={{}} >
-                    <Typography  className={classes.headerLocation} style={{marginTop:'20px'}} >Location:</Typography>
-                    </Grid>
-                    <Grid md={7} sm={7} xs={6} style={{color:'red'}}>
-                    <TextField   select margin="normal" style={{marginTop:'6px'}} >
-                      {location.map(option => (
-                        <MenuItem
-                          key={option.locationName}
-                          value={option.locationName}
-                        > {option.locationName}</MenuItem>
-                      ))}
-                    </TextField>
-                    </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
+      <Grid className={classes.displayBlock} >
+      <Grid className={classes.topHeader} >
+        <Grid
+          container
+          style={{
+            display: "inline-flex",
+            background:''
+          }}
+        >
+          <Hidden lgUp>
+            <Grid item  lg={1} md={1} sm={1} xs={1} style={{background:'',paddingRight:'1%',}}>
+              <MenuDrawer />
+            </Grid>
+          </Hidden>
+          <Hidden lgUp>
+            <Grid item lg={9} md={8} sm={7} xs={4} className={classes.gridmobileLogo} style={{}}>
+              <Button  style={{marginLeft:'15%'}}>
+                <img src="../../src/images/hq_mobile.png" className={classes.headerLogo} />
+              </Button>
+            </Grid>
+          </Hidden>
+          <Hidden mdDown>
+            <Grid item lg={10} md={9} sm={9} xs={6} style={{background:""}}>
+              <Button>
+                <img src="../../src/images/hq_logo.png" className={classes.headerLogo} />
+              </Button>
+            </Grid>
+          </Hidden>
+          <Grid item
+            lg={2}
+              md={4}
+              sm={4}
+              xs={7}
+              style={{ textAlign: "end", display: "inline-flex" }}
+          >
+            {
+              this.props.displayLocation === true && this.props.currentLocation &&
+              <Card
+                style={{
+                  width: "150%",
+                  // height: "75%",
+                  textAlign: "start",
+                  marginTop: "2.5%",
+                  marginBottom:"2.5%",
+                  background: "#e0e0e0",
+                  display: "inline-flex",
+                    boxShadow:'none',
+                }}
+              >
+                {/* <div >
+                  <Select
+                    placeholder="Select location"
+                    value={locationVal}
+                    autosize={true}
+                    options={
+                      this.state.locations && this.state.locations.map(location =>{
+                        return ({
+                          value:location.address_line1, label:location.address_line1
+                        })
+                      })
+                    }
+                    onChange={this.handleSelect}
+                    styles={customStyles}
+                  />
+                </div> */}
+              <Grid container style={{display:'inline-flex', }}>
+              <Grid item lg={2} md={2} sm={2} xs={2}>
+                <i class="material-icons"
+                style={{
+                  paddingLeft: "18%",
+                  paddingTop: "25%",
+                  // paddingRight: "120px"
+                }}
+              >
+                room
+              </i>
               </Grid>
-              <Grid md={1} sm={2} xs={2} style={{ marginTop: '0.9%', marginBottom: '0.9%',display:'inline-flex'}}>
-                {/* <Button className={classes.iconRight}> */}
-                 <i class="material-icons"  style={{}}>
-                    notifications_none
-</i>
-                  <i class="material-icons" style={{position:'absolute',right:'8%'}} >
-                    person
-</i>
-              </Grid>
-            </Grid>
-            </Grid>
-            <Divider />
+              <Grid  style={{paddingRight:"3%",paddingTop:"1%"}}>
+                {/* <FormControl required className={classes.formControl}> */}
+                   {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
+                        onChange={this.handleSelect}
+                        defaultValue={this.state.currentLocation}
+                        value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline
+                    >
+                        {this.state.locations && this.state.locations.map(element => {
+                            if(element.id === this.state.currentLocation){
+                                return ( <MenuItem  style={{marginLeft:"2%",}} value={element.id} selected key={element.id} >
+                                    {element.address_line1}
+                                    </MenuItem>)
+                            }else {
+                           return(
+                                <MenuItem value={element.id}  key={element.id} >
+                           {element.address_line1}
+                           </MenuItem>)
+                            }
+                            })}
+                      </Select> */}
+                    
+                      <div>
+                       <Select
+                       
+                         style={{fontSize:"10px"}}
+                          placeholder={this.state.currentLocation.address_line1}
+                          value={locationVal}
+                         
+                          // value={this.state.currentLocation.id}
+                          onChange={(e)=>this.handleSelect(e )}
 
-            <Grid md={7} sm={12} xs={12} className={classes.listGrid}>
+                          // value={this.state.locationVal.filter(option => option.address_line1 === 'GoodWorks Whitefield')}
+                          options={
+                            this.state.locations && this.state.locations.map(location =>{
+                              return ({
+                                value:location.address_line1, label:location.address_line1
+                              })
+                            })
+                          }
+                       
 
-                <Grid container className={classes.listt} spacing={2}>
+                          styles={customStyles}
+                        />
+                      </div>
+  
+                    {/* </FormControl> */}
 
-
-                  <Grid item  md={2} xs={2.5}><Link to='/'  className={classes.list}  style={{
-                    color:textColor
-                  }}>Home</Link></Grid>
-
-
-                  <Grid item md={2} xs={2.5}><Link to ='/mybookings' className={classes.list}  style={{
-                    color:textColor
-                  }}>MyBooking</Link></Grid>
-                  <Grid item md={2} xs={2.5}><Link to='/services' className={classes.list} style={{
-                    color:textColor
-                  }}>Services</Link></Grid>
-                  <Grid item  md={2} xs={2.5}><Link to='/facilities' className={classes.list} style={{
-                    color:textColor
-                  }}>Facilities</Link></Grid>
-                  <Grid item md={2} xs={2.5}><Link className={classes.list} style={{
-                    color:textColor
-                  }}>Feedback</Link></Grid>
                   </Grid>
 
-
-            </Grid>
-
-          <Grid container className={classes.viewPage} >
-            <Grid item className={classes.viewProfile}
-            > <Profile /></Grid>
-            <Grid item className={classes.viewPostForm}>
-              <Typography className={classes.viewDashboard}>
-              <Route exact path='/' component={Dashboard} />
-          <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/mybookings' component={MyBookings} />
-          <Route exact path='/facilities' component={Facilities} />
-          <Route exact path='/services' component={Services} />
-          </Typography>
-            </Grid>
-            <Grid item className={classes.viewRightPanel}><RightPanel /></Grid>
+              {/* <Select
+              disableUnderline
+                      value={this.state.currentLocation&&this.state.currentLocation.id}
+                      onChange={this.handleSelect}
+                      style={{ fontFamily: "Roboto Regular",fontSize:'16px' ,}}
+                    >
+                  {this.state.locations && this.state.locations.map(option => {
+                    return(
+                    <MenuItem
+                      key={option.id}
+                      value={option.id}
+                    >
+                      {" "}
+                      {option.address_line1}
+                    </MenuItem>
+                   ) })}
+                    </Select> */}
+                    </Grid>
+            </Card>
+  }
+            <i
+              class="material-icons"
+              style={{ marginLeft: "6%", marginTop: "6%" }}
+            >
+              notifications_none
+            </i>
           </Grid>
         </Grid>
-
-    )
+      </Grid>
+      <Grid container className={classes.viewPage}>
+      <Hidden mdDown>
+            <Grid item className={classes.viewProfile}>
+              <Profile className={classes.profileGrid}/>
+            </Grid>
+          </Hidden>
+        <Grid item  className={classes.viewPostForm}>
+{/* <Grid item className={classes.viewDashboard}> */}
+<Router history={history}>
+      <Switch >
+             <Redirect from="/login" to="/dashboard" />
+            <Route exact path="/" component={Dashboard} />
+            <Route  path="/dashboard" component={Dashboard} />
+            <Route  path="/services" component={ServiceType} />
+            <Route  path="/facilities" component={FacilityType} />
+            <Route path="/book_facility" component={BookFacility} />
+            <Route path="/feedback" component={Feedback} />
+            <Route path="/change_password" component={ChangePassword} />
+            <Route path="/my_bookings/:type" component={MyActivity} />
+            <Route  path="/user_profile/:profileID" component={UserProfile} />
+            <Route path="/following" component={Following} />
+            <Route path="/followers" component={Followers} />
+            <Route path="/edit_profile" component={EditProfile} />
+            </Switch>
+            </Router>
+            </Grid>
+        {/* </Grid> */}
+    </Grid>
+ </Grid>
+);
   }
 }
 Home.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(Home);
+export const mapStateToProps = state => locationSelector(state);
+export default connect(mapStateToProps)(withStyles(design)(withRouter(Home)));

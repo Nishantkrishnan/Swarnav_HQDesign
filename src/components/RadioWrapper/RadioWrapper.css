@@ -1,0 +1,33 @@
+.checkboxIcon {
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 1px solid #50505A;
+    float: left;
+    margin-right: 5px;
+}
+
+.borderCheckbox {
+    border: 1px solid #0098D6;
+}
+
+.checkboxIcon:before {
+
+}
+
+.checked {
+    background: #0098D6;
+    width: 9px;
+    height: 9px;
+    border-radius: 100%;
+}
+
+.infoIcon {
+    color: #757575;
+    font-size: 12px;
+    position: relative;
+    top: 2px;
+}

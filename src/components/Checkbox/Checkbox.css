@@ -1,0 +1,32 @@
+.checkboxIcon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.borderCheckbox {
+  border: 2px solid #cccccc;
+}
+
+.checkboxIcon:before {
+
+}
+
+.checked {
+  background: url('../../images/remember_checbox.svg') no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+  background-color: #ffffff;
+}
+
+.text {
+  color: #000000;
+}
