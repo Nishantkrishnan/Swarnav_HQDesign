@@ -9,7 +9,7 @@
     "dev": "npm i && concurrently --kill-others \"better-npm-run start-dev\"",
     "staging": "npm i && concurrently --kill-others \"better-npm-run start-staging\"",
     "clean": "rimraf ./__build__",
-    "build": "npm i && npm run clean && NODE_ENV=production webpack --display-error-details --config webpack/webpack.prod.config.js --progress -p",
+    "build": "npm i && npm run clean && SET NODE_ENV=production webpack --display-error-details --config webpack/webpack.prod.config.js --progress -p",
     "stylelint": "stylelint ./src/**/*.css --fix",
     "eslint": "eslint src --fix",
     "lint": "npm run eslint | npm run stylelint"
@@ -48,9 +48,8 @@
         "NODE_ENV": "development",
         "PORT": 8180,
         "API_HOST": "139.59.13.211",
-        "API_PORT": "3000",
         "MODULE_NAME": "Test Server",
-        "FRONTEND": "http://139.59.13.211"
+        "FRONTEND": "http://139.59.13.211:8180"
       }
     },
     "start-staging": {
@@ -107,6 +106,7 @@
     "enzyme-adapter-react-15": "^1.0.5",
     "enzyme-adapter-react-16": "^1.1.0",
     "file-loader": "^0.11.2",
+    "firebase": "^7.11.0",
     "history": "^4.7.2",
     "html-webpack-plugin": "^2.29.0",
     "identity-obj-proxy": "^3.0.0",
@@ -158,7 +158,6 @@
     "react-infinite-scroller": "^1.1.4",
     "react-linechart": "^1.1.12",
     "react-material-ui-calendar": "^0.2.3",
-    "react-phone-input-2": "^2.11.0",
     "react-progressbar": "^15.4.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",

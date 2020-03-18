@@ -74,9 +74,7 @@ class ManagePost extends Component {
         <Popover id={'edit-delete-post'}>
           <div className={styles.cntManagePost}>
             <div role="button" tabIndex="0" onClick={this.deletePost} className={styles.mcItem}>
-            <i class="material-icons">
-        delete_outline
-        </i>
+           <i className="glyphicon glyphicon-trash" />
               <span>Delete</span>
             </div>
             <div role="button" tabIndex="0" onClick={this.showEditModal} className={styles.mcItem}>

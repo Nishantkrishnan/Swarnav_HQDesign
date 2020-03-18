@@ -158,12 +158,13 @@ const customStyles = {
     console.log('this is screen width', screen.width);
     return ({
       ...base,
-      zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
+      // zIndex: state.isFocused ? "999" : "1",  //Only when current state focused
       position:"absolute",
-
       border:"transparent",
       borderColor: "#e0e0e0",
-
+      fontSize:'10px',
+      fontFamily:'Roboto Regular',
+      width:screen.width>768?"10%":"38%",
     })
 },
 control: base => ({
@@ -199,11 +200,15 @@ indicatorSeparator: base =>({
 
 
 class Home extends Component {
-  state = {
+  constructor(props, context) {
+    super(props, context)
+  this.state = {
     textColor: "red",
     textDecoration: "none",
-    locationVal:""
-  };
+    locationVal:"",
+    locations: null,
+      currentLocation: null,
+  }}
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
@@ -227,17 +232,20 @@ class Home extends Component {
     this.props.dispatch(fetchLocations());
   }
   componentDidMount(){
+   
     this.setState({
       currentLocation: this.props.currentLocation
     })
   }
   componentWillReceiveProps(nextProps){
+    
     if(nextProps.currentLocation && this.props.currentLocation !== nextProps.currentLocation){
       this.setState({
         currentLocation: nextProps.currentLocation
       })
     }
     if(nextProps.locations && this.props.locations !== nextProps.locations){
+  
       this.setState({
         locations: nextProps.locations
       }
@@ -248,6 +256,7 @@ class Home extends Component {
     }
   }
   handleSelect = (event) => {
+   
     this.setState({locationVal:event})
     const changedLocation = this.state.locations.filter(loc => loc.id == event.target.value)
     this.props.dispatch(changeLocations(changedLocation[0]));
@@ -255,12 +264,12 @@ class Home extends Component {
 
 
   render() {
+    
     const {classes}= this.props
     const { textColor, flagValue, flag, locationVal } = this.state;
     const { changeColor, underlineOnLink } = this;
-
+    // console.log(state,"state")
   //  console.log("history:",history);
-  
     // const ValueContainer = ({ children, ...props }) => {
     //   return (
     //     components.ValueContainer && (
@@ -279,6 +288,7 @@ class Home extends Component {
     //     )
     //   );
     // };
+
     // const DropdownIndicator = props => {
     //   return (
     //     components.DropdownIndicator && (
@@ -337,17 +347,12 @@ class Home extends Component {
               this.props.displayLocation === true && this.props.currentLocation &&
               <Card
                 style={{
- 
                   width: "150%",
-                  width: "100%",
-
                   // height: "75%",
                   textAlign: "start",
                   marginTop: "2.5%",
                   marginBottom:"2.5%",
-
                   background: "#e0e0e0",
-
                   display: "inline-flex",
                     boxShadow:'none',
                 }}
@@ -385,11 +390,7 @@ class Home extends Component {
                    {/* <Select  style={{ fontFamily: "Roboto Regular",fontSize:'14px' }}
                         onChange={this.handleSelect}
                         defaultValue={this.state.currentLocation}
-
                         value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline
-
-                        value={this.state.currentLocation&&this.state.currentLocation.id}  disableUnderline    
-
                     >
                         {this.state.locations && this.state.locations.map(element => {
                             if(element.id === this.state.currentLocation){
@@ -399,19 +400,23 @@ class Home extends Component {
                             }else {
                            return(
                                 <MenuItem value={element.id}  key={element.id} >
-t.address_line1}
+                           {element.address_line1}
                            </MenuItem>)
                             }
                             })}
                       </Select> */}
+                    
                       <div>
                        <Select
- HEAD
-                          placeholder={""}
-
-                          placeholder=""
-
+                       
+                         style={{fontSize:"10px"}}
+                          placeholder={this.state.currentLocation.address_line1}
                           value={locationVal}
+                         
+                          // value={this.state.currentLocation.id}
+                          onChange={(e)=>this.handleSelect(e )}
+
+                          // value={this.state.locationVal.filter(option => option.address_line1 === 'GoodWorks Whitefield')}
                           options={
                             this.state.locations && this.state.locations.map(location =>{
                               return ({
@@ -419,18 +424,15 @@ t.address_line1}
                               })
                             })
                           }
-                          onChange={this.handleSelect}
+                       
+
                           styles={customStyles}
                         />
                       </div>
+  
                     {/* </FormControl> */}
 
                   </Grid>
-
-
-                   
-                  </Grid>
-                  
 
               {/* <Select
               disableUnderline

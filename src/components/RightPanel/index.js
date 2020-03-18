@@ -15,7 +15,8 @@ const design = theme => ({
     paddingBottom: "7%",
     boxShadow:'none',
     marginTop:'1%',
-    background:"red ! important"
+    background:"red ! important",
+
 
   },
   rightPanelPaper: {
@@ -112,7 +113,7 @@ class RightPanel extends Component {
     const { classes } = this.props;
 
     return (
-      <Card  style={{height:"542px", marginTop:"-2.5%",}} >
+      <Card  style={{height:"542px", marginTop:"-2.5%",boxShadow:'none'}} >
 
       </Card>
       // <nav id="spy">

@@ -165,13 +165,15 @@ const design = theme => ({
   likeButton: {
     textTransform: "none",
     fontSize: " 16px",
-    color: " #6F6F6F"
+    color: " #6F6F6F",
+    background:"transparent !important",
     // marginLeft:"40%",
   },
   commentButton: {
     textTransform: "none",
     fontSize: " 16px",
     color: " #6F6F6F",
+    background:"transparent !important",
     // marginLeft:"30%",
     ["@media (max-width:360px)"]: {
       // marginLeft: "-22px"
@@ -247,7 +249,7 @@ class Dashboard extends Component {
     this.setState({ menuOpen: false });
   };
   toggleCommentDialogOpen = (id) => {
-    this.setState(state => ({ open: !state.open,id:id}));
+    this.setState(state => ({ open: !state.open}));
   };
   handlePostLikes = () => {
     let { likes, color } = this.state;
@@ -291,7 +293,7 @@ class Dashboard extends Component {
       editModalShowHide: false,
       editFormPosted: false,
       editPost: null
-    };
+    } 
 
     this.loadMore = this.loadMore.bind(this);
     this.handleCreatePosts = this.handleCreatePosts.bind(this);
@@ -306,8 +308,8 @@ class Dashboard extends Component {
     this.props.dispatch(getPosts(this.state.perPage));
   }
   componentDidMount() {
-    document.title = "GoodWorks HQ - Dashboard";
-    this.props.dispatch(blockLocationAndOpen(true));
+    document.title = "GoodWorks HQ - Dashboard"
+    this.props.dispatch(blockLocationAndOpen(true))
   }
 
   componentWillReceiveProps = nextProps => {
@@ -357,6 +359,7 @@ class Dashboard extends Component {
   }
 
   loadMoreComments = postId => {
+    debugger
     this.props.dispatch(loadMoreComments(postId));
   };
 
@@ -487,9 +490,6 @@ class Dashboard extends Component {
          }
          threshold={1}
        >
-
-
-
                 {this.state.posts.map((post) => {
                   // console.log("post:",post,"key:",key);
                   const imagUrls = [];
@@ -507,11 +507,7 @@ class Dashboard extends Component {
 
                     >
                       <CardContent
-                        style={{
-                          marginLeft: "%",
-                          marginRight: "%",
-                          background: ""
-                        }}
+
                       >
                         <Grid container style={{ background: "" }}>
                           <Grid
@@ -615,12 +611,7 @@ class Dashboard extends Component {
                         })}
                         </Grid>
 
-{/*
-                        {post.media.map((postss,key1) => {
-                          console.log("posts:",postss);
-                          return <CardMedia component="img" />;
-                        })} */}
-                       {/* </CardContent> */}
+
                       <Divider
                         style={{
                           marginLeft: "%",
@@ -696,8 +687,8 @@ class Dashboard extends Component {
 
                               <Button
                                 className={classes.commentButton}
-                                onClick={(id) => {
-                                  toggleCommentDialogOpen(post.post_id);
+                                onClick={() => {
+                                  toggleCommentDialogOpen();
                                 }}
                                 // onClick={() => this.showModal()}
                               >
@@ -711,14 +702,12 @@ class Dashboard extends Component {
                               </Button>
 
                             </Typography>
-                            {/* <Modal show={this.state.modalShowHide} onHide={this.closeModal}>
-                  <Card>hii</Card>
-                </Modal> */}
+                         
                           </Grid>
                         </Grid>
-                      {/* </CardActions> */}
+                     
 
-                      {this.state.open&&this.state.id==post.post_id ? (
+                      {this.state.open ? (
 
                         <Grid
                           style={{
@@ -792,16 +781,14 @@ class Dashboard extends Component {
                           })}
 
 
-                          {/* <Modal show={this.state.modalShowHide} onHide={this.closeModal}>
-            <Card>hiii</Card>
-          </Modal> */}
+                      
 
             <CommentForm
-              postId={this.state.id}
+              postId={post.post_id}
               profile={this.props.profile}
               open={this.state.open}
-              key={this.state.id}
-              // toggleCommentDialogClose={this.toggleCommentDialogClose}
+              // key={this.state.id}
+             
             />
 
                         </Grid>

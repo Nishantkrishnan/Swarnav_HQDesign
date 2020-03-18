@@ -55,20 +55,60 @@ class LogoutDialog extends React.Component {
             paddingTop: "3%",
             paddingLeft: "3%",
             paddingRight: "3%",
-            paddingBottom: "3%"
+            paddingBottom: "3%",
+            borderRadius:"2%",
+            boxShadow:"none",
+            height:"100%"
           }}
         >
-          <Typography
+
+        <Grid container>
+        <Grid item md={10}>
+
+        <Typography
             style={{
               fontSize: "16px",
+              marginTop:"2%",
               fontFamily: "Roboto Medium",
               textAlign: "center",
               color: "#E74A3F",
-              justifyContent: "center"
+              justifyContent: "center",
+              position:""
             }}
           >
             Are you Sure, you want to logout
           </Typography>
+        </Grid>
+
+        <Grid item md={2}>
+        <Button
+          style={{
+
+
+            fontSize: "14px",
+            color: "",
+            textAlign: "center",
+            marginBottom: "2%"
+          }}
+          onClick={() => {
+            toggleCreatePostDialogClose();
+          }}
+        >
+
+        <i class="material-icons">
+        close
+        </i>
+        </Button>
+
+        </Grid>
+
+        </Grid>
+
+
+
+
+
+
           <Grid
             container
             style={{
@@ -77,25 +117,9 @@ class LogoutDialog extends React.Component {
               justifyContent: "flex-end"
             }}
           >
-            <Grid item md={5}>
-              <Button
-                style={{
-                  background: "#E74A3F",
-                  textTransform: "none",
-                  fontSize: "14px",
-                  color: "white",
-                  textAlign: "center",
-                  marginBottom: "2%"
-                }}
-                onClick={() => {
-                  toggleCreatePostDialogClose();
-                }}
-              >
-                CANCEL
-              </Button>
-            </Grid>
 
-            <Grid item md={5}>
+
+            <Grid item md={12}>
               {" "}
               <Button
                 style={{
@@ -105,7 +129,9 @@ class LogoutDialog extends React.Component {
                   color: "white",
                   textAlign: "center",
                   marginBottom: "2%",
-                  marginLeft: "16%"
+                  marginLeft: "40%",
+                  position:"center",
+
                 }}
               >
                 <Link
@@ -123,7 +149,7 @@ class LogoutDialog extends React.Component {
                     this.destroySession();
                   }}
                 >
-                  OK
+                  PROCEED
                 </Link>
               </Button>
             </Grid>

@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import Landing from './Landing/Landing';
 import Home from './Home';
 import MessageAlert from '../containers/MessageAlert/MessageAlert';
-import Kyc from './Landing/Kyc';
 import '../global.css';
 
 class App extends React.Component {
@@ -13,18 +12,14 @@ class App extends React.Component {
   render() {
     const { showMessageAlert }  = this.props;
     const sessionToken = localStorage.getItem('coworks-accessToken-remember');
-    const isKycPage = window.location.href.includes('upload');
+    
     return (
       <div>
         {
           showMessageAlert && <MessageAlert />
         }
         {
-          isKycPage?
-          <Kyc/>
-          :
-          sessionToken ? 
-          <Home /> : <Landing />
+          sessionToken ? <Home /> : <Landing />
         }
       </div>
     );

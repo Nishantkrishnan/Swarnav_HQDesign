@@ -26,54 +26,47 @@ import Hidden from "@material-ui/core/Hidden";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { logOut } from '../../Landing/Login/Login.actions';
 import LogoutDialog from "../../../components/LogoutDialog"
-
-
 const design = theme => ({
-  username:{
-    fontSize:"28px !important",
-    color :" #333333",
-    textAlign: "center",
-    marginTop: "3%"
-},
-  innerCard: {
+  topSection:{
+    background:"transparent ! important"
+  },
+  gridProfile: {
     background: "#E74A3F",
     borderRadius: "7px 7px 0 0",
     borderRadius: "7px 7px 0px 0px",
-    height: "82px",
-    position: "relative",
+    margin:0
+,    height: "82px",
     boxShadow: 'none',
+    display:"grid"
   },
   username: {
     fontFamily: "Roboto Medium",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#FFFFFF",
-    textAlign: "center",
-    marginTop: "3%"
+    textTransform:"none",
+    paddingTop: "2%"
   },
   avatar: {
-    left: "0%",
-    right: "68%",
+
     width: "70px",
     height: "70px",
-    margin: "auto",
-    position: "absolute"
+
   },
-  listItem: {
-    marginTop: "2.4%",
-    marginLeft: "11.5%",
-    marginBottom: "4.9%",
-    fontFamily: "Roboto",
-    fontSize: "18px",
-    color: "#A1A1A1"
+  gridList:{
+    marginTop: "21%" ,marginBottom:'10%'
+  },
+  textTypography:{
+    marginTop:"%",marginLeft:"9%",fontSize:"18px"
   },
   linkTitle: {
+    marginLeft: "11.5%",
+    marginBottom: "7%",
     color: "#A1A1A1",
-    marginLeft: "7%",
-    position: "absolute",
-    left: "84px",
+
+    display:"flex",
     textDecoration: "none",
     fontFamily: "Roboto Regular",
-    fontSize: "18px"
+
   }
 });
 class Profile extends Component {
@@ -101,8 +94,6 @@ class Profile extends Component {
     this.updateProfilePic = this.updateProfilePic.bind(this);
     this.destroySession = this.destroySession.bind(this);
   }
-
-
   componentWillReceiveProps(nextProps) {
     this.setState({
       profile: nextProps.profile,
@@ -129,12 +120,9 @@ class Profile extends Component {
     });
     this.props.dispatch(updateProfileImg(reqBody));
   }
-
   destroySession = () => {
     this.props.dispatch(logOut({ userToken: null }));
-
   }
-
   toggleCreatePostDialog = () => {
     const { open } = this.state;
     this.setState({
@@ -142,7 +130,6 @@ class Profile extends Component {
       open: true
     });
   };
-
   toggleCreatePostDialogClose = () => {
     const { open } = this.state;
     this.setState({
@@ -163,137 +150,214 @@ class Profile extends Component {
     return (
       <div>
         <Card style={{ boxShadow: 'none' }}>
-          <Card className={classes.innerCard}>
+        <Grid className={classes.gridProfile}>
+            <Button className={classes.topSection}>
     <Typography className={classes.username}>{this.state.profile.user.first_name} {this.state.profile.user.last_name}</Typography>
-          </Card>
-          <Avatar
+    </Button>
+    <Button className={classes.topSection}>
+    <Avatar
           className={classes.avatar}
-          style={{ transform: "translate(4%, -50%)" }}
+
           src={this.state.profile.profile_image.medium}
-        />
-<Typography className={classes.listItem} style={{ marginTop: "21.4%" }}>
-          <i class="material-icons" style={{ marginTop: "4px" }}>
-            home
-          </i>
-          <Link
+        >
+          </Avatar>
+          </Button>
+          </Grid>
+<Grid  className={classes.gridList}>
+<Link
             className={classes.linkTitle}
               onClick={()=>window.location.href='/'}
             to="/"
-            style={
+
+          >
+          <i class="material-icons"   style={
+              window.location.pathname === "/"
+                ? {
+                    textTransform: "none",
+                    color: "red",
+                    // fontSize: "25px",
+                    textDecoration: "none",
+
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            } >
+            home
+          </i>
+
+          <Typography className={classes.textTypography}
+          style={
               window.location.pathname === "/"
                 ? {
                     textTransform: "none",
                     color: "red",
                     fontSize: "18px",
-                    textDecoration: "none"
+                    textDecoration: "none",
+                    marginTop:"0%"
                   }
                 : {
                     textTransform: "none",
                     textDecoration: "none"
                   }
             }
-          >
-            Home
+            >  Home</Typography>
           </Link>
-        </Typography>
-        <Typography className={classes.listItem}>
-          <i class="material-icons">speaker_notes</i>
-          <Link
+
+
+        <Link
             className={classes.linkTitle}
               onClick={()=>window.location.href='/my_bookings/services'}
             to="/my_bookings/services"
-            style={
-              window.location.pathname === "/mybookings"
+
+          >
+          <i class="material-icons"  style={
+              window.location.pathname === "/my_bookings/services"
                 ? {
                     textTransform: "none",
                     color: "red",
-                    fontSize: "16px",
+                    // fontSize: "18px",
                     textDecoration: "none"
                   }
                 : {
                     textTransform: "none",
                     textDecoration: "none"
                   }
-            }
-          >
-            MyBooking
-          </Link>
-        </Typography>
+            }>speaker_notes</i>
 
-        <Typography className={classes.listItem}>
-          <i class="material-icons">brightness_5</i>
-          <Link
+           <Typography  className={classes.textTypography}
+           style={
+              window.location.pathname === "/my_bookings/services"
+                ? {
+                    textTransform: "none",
+                    color: "red",
+                    fontSize: "18px",
+                    textDecoration: "none",
+                    marginTop:"0%"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }
+            > MyBooking </Typography>
+          </Link>
+
+
+        <Link
             className={classes.linkTitle}
               onClick={()=>window.location.href='/services'}
             to="/services"
-            style={
+
+          >
+          <i class="material-icons"   style={
               window.location.pathname === "/services"
                 ? {
                     textTransform: "none",
                     color: "red",
-                    fontSize: "16px",
+                    // fontSize: "18px",
                     textDecoration: "none"
                   }
                 : {
                     textTransform: "none",
                     textDecoration: "none"
                   }
-            }
-          >
-            Services
+            }>brightness_5</i>
+
+           <Typography   className={classes.textTypography}
+           style={
+              window.location.pathname === "/services"
+                ? {
+                    textTransform: "none",
+                    color: "red",
+                    fontSize: "18px",
+                    textDecoration: "none",
+                    marginTop:"0%"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }> Services </Typography>
           </Link>
-        </Typography>
-        <Typography className={classes.listItem}>
-          <i class="material-icons">star_border</i>
-          <Link
+
+
+        <Link
             className={classes.linkTitle}
             onClick={()=>window.location.href='/facilities'}
             to="/facilities"
-            style={
+
+          >
+          <i class="material-icons"   style={
               window.location.pathname === "/facilities"
                 ? {
                     textTransform: "none",
                     color: "red",
-                    fontSize: "16px",
+                    // fontSize: "18px",
                     textDecoration: "none"
                   }
                 : {
                     textTransform: "none",
                     textDecoration: "none"
                   }
-            }
-          >
-            Facilities
-          </Link>
-        </Typography>
+            }>star_border</i>
 
-        <Typography className={classes.listItem}>
-          <i class="material-icons">feedback</i>
-          <Link
+          <Typography    className={classes.textTypography}
+          style={
+              window.location.pathname === "/facilities"
+                ? {
+                    textTransform: "none",
+                    color: "red",
+                    fontSize: "18px",
+                    textDecoration: "none",
+                    marginTop:"0%"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }>  Facilities </Typography>
+          </Link>
+
+
+        <Link
             onClick={()=>window.location.href='/feedback'}
             className={classes.linkTitle} to="/feedback"
-            style={
+
+          >
+          <i class="material-icons"   style={
               window.location.pathname === "/feedback"
                 ? {
                     textTransform: "none",
                     textDecoration: "none",
                     color: "red",
-                    fontSize: "16px"
+                    // fontSize: "18px"
                   }
                 : {
                     textTransform: "none",
                     textDecoration: "none"
                   }
-            }
-          >
-            Feedback
+            }>feedback</i>
+
+          <Typography    className={classes.textTypography}
+          style={
+              window.location.pathname === "/feedback"
+                ? {
+                    textTransform: "none",
+                    textDecoration: "none",
+                    color: "red",
+                    fontSize: "18px",
+                    marginTop:"0%"
+                  }
+                : {
+                    textTransform: "none",
+                    textDecoration: "none"
+                  }
+            }> Feedback </Typography>
           </Link>
-        </Typography>
 
-
-        <Typography className={classes.listItem}>
-          <i class="material-icons">power_settings_new</i>
-          <Link
+        <Link
             className={classes.linkTitle} to="/logout"
             onClick={() => {
               this.toggleCreatePostDialog();
@@ -305,18 +369,17 @@ class Profile extends Component {
             //   this.destroySession();
             //   this.toggleCreatePostDialog();
             // }}
-            
+
             >
+          <i class="material-icons">power_settings_new</i>
 
-
-            Logout
+          <Typography  className={classes.textTypography}>  Logout</Typography>
           </Link>
           <LogoutDialog
             open={this.state.open}
             toggleCreatePostDialogClose={this.toggleCreatePostDialogClose}
           />
-        </Typography>
-
+       </Grid>
         </Card>
       </div>
     );

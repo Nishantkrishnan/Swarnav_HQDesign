@@ -30,7 +30,21 @@ const design = theme => ({
     ["@media (max-width:70em)"]: {
      width:'100%'
     },
-  }
+  },
+  timerGrid:{
+    background: "#FFFFFF",
+                                 border: "1px solid #DADADA",
+                                    borderRadius: "5px",
+                                    borderRadius: "5px",
+                                    height: "100%",
+                                    paddingTop: "5%",
+                                    paddingLeft:'4%',
+                                    paddingRight:'2%',
+                                    ["@media (max-width:70em)"]: {
+                                        paddingTop: "9%",
+                                        paddingRight:'5%',
+                                    },
+}
 });
 export const customTheme = createMuiTheme({
     palette: {
@@ -130,12 +144,12 @@ class BookService extends Component {
     dispatch: f => f,
   };
   componentDidMount() {
-    debugger
+   
     this.props.dispatch(serviceRequestPreferences(this.props.serviceId, this.props.currentLocation.toJS().id));
     document.title = "GoodWorks HQ - Book Service";
   }
   componentWillReceiveProps(nextProps) {
-    debugger
+  
     if (nextProps.serviceRequestPreference) {
       const serviceRequestPreference = nextProps.serviceRequestPreference;
       if (!this.state.availableDays) {
@@ -152,7 +166,7 @@ class BookService extends Component {
     this.setState({ pictures });
   }
   handleDayClick = (date) => {
-    debugger
+   
     console.log(date,"date")
     this.props.dispatch(serviceRequestPreferences(this.props.serviceId, this.props.currentLocation.toJS().id,date));
     this.setState({
@@ -180,8 +194,12 @@ class BookService extends Component {
     this.props.dispatch(showLoader(true));
     this.props.dispatch(createServiceBooking(reqBody, this.props.serviceId, this.props.serviceId));
   }
+  disableWeekends(date) {
+    return date.getDay() === 0 || date.getDay() === 6;
+  }
   render() {
-    debugger
+   
+    const {classes}=this.props
     const{serviceId,serviceTypeId} =this.props
     console.log(serviceId,"serviceId")
     console.log(serviceTypeId,"serviceTypeId")
@@ -190,6 +208,7 @@ class BookService extends Component {
     console.log(this.handleChangeTime,"change Time")
     console.log(this.state,"state")
     console.log(activeDay,"activeDay")
+    let today = new Date()
     if (!this.state.availableDays) {
       return <Loader />;
     }
@@ -236,20 +255,21 @@ class BookService extends Component {
                   borderRadius: "5px",
                   borderRadius: "5px",
                   // height:'120%',
-                  paddingLeft: "3%",
-                  width: "90%"
+                  paddingLeft: "3.5%",
+                  // width: "90%"
+                  background:""
                 }}
               >
                  <MuiThemeProvider theme={customTheme}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}  style={{backgroundColor: "red",fontSize:"14px"}}>
-                        <KeyboardDatePicker style={{width: '100%' ,marginBottom:"5%",fontFamily:'Roboto Regular'}}
+                <MuiPickersUtilsProvider utils={DateFnsUtils}  >
+                        <KeyboardDatePicker style={{width: '100%' ,paddingBottom:"2%",fontFamily:'Roboto Regular'}}
+                        minDate={today}
+                        shouldDisableDate={this.disableWeekends}
  InputProps={{
   disableUnderline: true,
   style: {fontSize: 14},
   fontFamily:'Roboto Regular'
-  // classes: {
-  //   input: classes.resize,
-  // },
+
 }}
                         variant="inline"
                           // value={this.state.date}
@@ -281,19 +301,12 @@ class BookService extends Component {
               style={{ background: "", paddingLeft: "1%" }}
             >
               <Typography
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid #DADADA",
-                  borderRadius: "5px",
-                  borderRadius: "5px",
-                  height: "100%",
-                  paddingLeft: "2%"
-                }}
+                className={classes.timerGrid}
                 value={this.props.someText}
                 onChange={this.handleChangeTime}
               >
-                <Grid container style={{display:"inline-flex",background:'',marginTop:"5%"}}>
-                  <Grid item lg={11} md={11} sm={11} xs={11} style={{ background: "",paddingLeft:"2%"  }}>
+                <Grid container style={{display:"inline-flex"}}>
+                  <Grid item lg={11} md={11} sm={11} xs={11} >
                   <Select
                       // multiple
                       disableUnderline
@@ -313,12 +326,8 @@ class BookService extends Component {
                   <Grid
                     item
                     lg={1} md={1} sm={1} xs={1}
-                    style={{
-                      position: "relative",
-                    marginTop: "2%",
-                      right: "1px",
-                      width:'10px'
-                    }}
+                    style={{background:'',display:'flex',alignItems:"center",justifyContent:"center",paddingBottom:'2%'}}
+
                   >
                     <i class="material-icons"  style={{fontSize:'14px'}}>
                       access_time
@@ -413,33 +422,18 @@ class BookService extends Component {
           multiple
           type="file"
         /> */}
-
-
         <label htmlFor="contained-button-file">
             <Button
               style={{
               }}
             >
-
               <i class="material-icons" style={{}}>
                 attach_file
               </i>
-
-
               <Typography style={{ fontFamily: "Roboto Regular",fontSize:'12px' }}>
                 Attach Picture (jpg, jpeg, png)
               </Typography>
-
-              <ImageUploader
-                onChange={this.onDrop}
-                maxFileSize={10485760}
-                maxFiles={5}
-                label="Max image size: 10MB, Max images: 5, file type: jpg | jpeg | gif | png"
-                withPreview
-              />
             </Button>
-
-
             </label>
           </Grid>
           <Button
