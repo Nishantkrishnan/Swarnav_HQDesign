@@ -117,7 +117,7 @@
     "jsdom-global": "^3.0.2",
     "json-loader": "^0.5.7",
     "loader-runner": "^2.3.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "material-ui-next-pickers": "0.0.21",
     "material-ui-pickers": "^2.2.4",
     "moment": "^2.19.1",
