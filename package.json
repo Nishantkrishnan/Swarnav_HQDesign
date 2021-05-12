@@ -96,7 +96,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
-    "chart.js": "^2.7.1",
+    "chart.js": "^2.9.4",
     "chartjs": "^0.3.24",
     "classnames": "^2.2.5",
     "component-horizontal-stacked-bar": "^2.0.1",
